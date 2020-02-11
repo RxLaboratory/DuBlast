@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (0, 0, 1),
+    "version" : (1,0,0),
     "location" : "Render Properties, 3D View > View menu, 3D View > Sidebar (N) > Tool tab",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -126,7 +126,7 @@ class DUBLAST_PT_playblast_settings(bpy.types.Panel):
 
 class DUBLAST_OT_playblast( bpy.types.Operator ):
     """Renders and plays an animation playblast."""
-    bl_idname = "render.create_play_playblast"
+    bl_idname = "render.playblast"
     bl_label = "Animation Playblast"
     bl_description = "Render and play an animation playblast."
     bl_option = {'REGISTER'}
@@ -240,7 +240,7 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
 
 def menu_func(self, context):
     self.layout.separator()
-    self.layout.operator('render.create_play_playblast', icon= 'FILE_MOVIE')
+    self.layout.operator('render.playblast', icon= 'FILE_MOVIE')
 
 classes = (
     DUBLAST_settings,
@@ -255,19 +255,34 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
 
+    # New playblast attribute in the scenes
+    if not hasattr( bpy.types.Scene, 'playblast' ):
+        bpy.types.Scene.playblast = bpy.props.PointerProperty( type=DUBLAST_settings )
+
     # menus
     bpy.types.VIEW3D_MT_view.append(menu_func)
 
-    if not hasattr( bpy.types.Scene, 'playblast' ):
-        bpy.types.Scene.playblast = bpy.props.PointerProperty( type=DUBLAST_settings )
+    # keymaps
+    kc = bpy.context.window_manager.keyconfigs.addon
+    if kc:
+        km = kc.keymaps.new(name='Playblast', space_type='VIEW_3D')
+        kmi = km.keymap_items.new('render.playblast', 'RET', 'PRESS', ctrl=True)
+        addon_keymaps.append((km, kmi))
 
 def unregister():
     # unregister
     for cls in reversed(classes):
         bpy.utils.unregister_class(cls)
 
+    # menu
     bpy.types.VIEW3D_MT_view.remove(menu_func)
 
+    # keymaps
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
+
+    # attributes
     del bpy.types.Scene.playblast
 
 if __name__ == "__main__":
