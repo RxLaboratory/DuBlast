@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The DuBlast comprehensive documentation">
+  <meta name="author" content="Nicolas Dufresne">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - DuBlast Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="style.css" rel="stylesheet">
+  <link href="video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/index.html";
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> DuBlast Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="index.html">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#usage">Usage</a></li>
+        
+            <li><a class="toctree-l3" href="#difference-between-dublast-and-the-native-viewport-render-animation-command">Difference between DuBlast and the native Viewport Render Animation command</a></li>
+        
+            <li><a class="toctree-l3" href="#license">License</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="settings.html">Settings</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="changelog.html">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="gnu-gpl.html">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="doc-license.html">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://rainboxlab.org/about/contact/">Contact</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://rainboxlab.org/about/donate/">Donate</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">DuBlast Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://dublast-docs.rainboxlab.org/edit/master/src/docs/index.md"> Edit on Dublast-Docs</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="introduction">Introduction</h1>
+<p><em>DuBlast</em> is an add-on for <em>Blender</em> which makes it easy to create and play animation playblasts, without having to change any render or output setting.</p>
+<h2 id="usage">Usage</h2>
+<p>It adds an <em>Animation Playblast</em> entry in the <em>View 3D &gt; View</em> menu.</p>
+<p><img alt="Menu screenshot" src="img/menu.png" /></p>
+<p>It renders the animation with the current viewport settings, temporarily overriding the output settings. By default, it will render the animation with a resolution of 25% of the output dimensions, in the default temp folder for your system. It then automatically opens and plays the animation.</p>
+<p>By default, the rendered animation is stored in an <em>MP4</em> file, with custom settings tweaked for better animation playback and seekability (it is easy to go frame by frame in these files).</p>
+<p>You can <a href="settings.html">adjust these and other settings</a> for playblast creation in the <em>Output Settings</em> Tab of the <em>Properties</em> panel.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can [Right Click] on the menu item and choose <em>Change Shortcut</em> to assign it a handy keyboard shortcut.</p>
+</div>
+<h2 id="difference-between-dublast-and-the-native-viewport-render-animation-command">Difference between <em>DuBlast</em> and the native <em>Viewport Render Animation</em> command</h2>
+<table>
+<thead>
+<tr>
+<th>DuBlast</th>
+<th>Viewport Render Animation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Automatically plays</strong> the rendered animation</td>
+<td>Needs the user to <strong>manually play</strong> the animation [Ctrl] + [F11]</td>
+</tr>
+<tr>
+<td><strong>Has its own output settings</strong>, so the user can create playblasts without altering the output settings of the scene</td>
+<td><strong>Shares the output settings</strong> with the scene/render settings, which means the user has to alter the output settings even if they&rsquo;re already set for rendering the scene</td>
+</tr>
+<tr>
+<td>Has <strong>custom output format presets</strong> for better animation playback and seek</td>
+<td>Needs the user to <strong>manually set the output</strong> to an animator friendly format</td>
+</tr>
+<tr>
+<td><strong>Scales down the size of the text for the metadata</strong> according to the resolution %</td>
+<td><strong>Keeps the same size for the text of the metadata</strong>, no matter the output resolution, which results in huge texts at lower resolution</td>
+</tr>
+<tr>
+<td>Atomatically adjusts the rendered animation dimension to <strong>fit the <em>MP4</em> requirements</strong> when set to use <em>MP4</em></td>
+<td>The user has to <strong>find a fitting resolution %</strong> for the dimensions to have an even number of lines and columns</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License</h2>
+<h3 id="software">Software</h3>
+<p><strong><em>DuBlast</em> Copyright (c) 2020 Nicolas Dufresne</strong>  </p>
+<p><em>DuBlast</em> is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.</p>
+<p><em>DuBlast</em> is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</p>
+<p>A copy of the <em>GNU General Public License</em> is included in the section entitled &ldquo;<a href="gnu-gpl.html">GNU GPLv3</a>&rdquo;.</p>
+<p><img alt="GNU" src="img/logos/gnu.png" /> <img alt="GPL" src="img/logos/gplv3.png" /></p>
+<h3 id="documentation">Documentation</h3>
+<p><strong>Copyright (C)  2020 Nicolas Dufresne</strong><br />
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation;<br />
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.</p>
+<p>A copy of the license is included in the section entitled &ldquo;<a href="doc-license.html">Documentation License</a>&rdquo;.</p>
+<p><img alt="GNU" src="img/logos/gnu.png" /> <img alt="GFDL" src="img/logos/gfdl-logo.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="settings.html" class="btn btn-neutral float-right" title="Settings">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 Rainbox Laboratory and Nicolas Dufresne</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="settings.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="video.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-02-12 09:20:54
+-->
