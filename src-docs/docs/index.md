@@ -1,4 +1,6 @@
-# Introduction
+# DuBlast
+
+![Icon](img/dublast.png)
 
 *DuBlast* is an add-on for *Blender* which makes it easy to create and play animation playblasts, without having to change any render or output setting.
 
