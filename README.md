@@ -18,6 +18,12 @@ Quick Playblast tool for Blender
 
 🤗 We'd be happy to welcome you on the [forum](https://forum.rainboxlab.org) too.
 
+## Screenshots
+
+![Menu](https://github.com/Rainbox-dev/DuBLF_DuBlast/raw/master/docs/img/menu.png)
+
+![Settings](https://github.com/Rainbox-dev/DuBLF_DuBlast/raw/master/docs/img/settings.png)
+
 ## Difference between *DuBlast* and the native *Viewport Render Animation* command
 
 |DuBlast|Viewport Render Animation|
