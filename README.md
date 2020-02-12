@@ -6,7 +6,7 @@ Quick Playblast tool for Blender
 
 *DuBlast* is an add-on for *Blender* which makes it easy to create and play animation playblasts, without having to change any render or output setting.
 
-📖 A **comprehensive user documentation** is [available here](https://dume-docs.rainboxlab.org).
+📖 A **comprehensive user documentation** is [available here](https://dublast-docs.rainboxlab.org).
 
 🎥 You can **download the latest public version [here](https://rainboxlab.org/tools/dublast/)**.
 
