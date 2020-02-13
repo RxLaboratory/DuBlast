@@ -41,7 +41,7 @@ class DUBLAST_settings( bpy.types.PropertyGroup ):
     frame_end: bpy.props.IntProperty( name= "Frame End", description= "Overrides the frame end for the playblast", default = 250, min=0 )
     frame_step: bpy.props.IntProperty( name= "Frame Step", description= "Overrides the frame step for the playblast", default = 1, min=1 )
 
-    filepath: bpy.props.StringProperty( name="Output Path", description="Directory/name to save playblasts")
+    filepath: bpy.props.StringProperty( name="Output Path", description="Directory/name to save playblasts", subtype="FILE_PATH")
 
     file_format: bpy.props.EnumProperty(
         items = [
