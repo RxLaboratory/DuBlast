@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (1,0,0),
+    "version" : (1,1,0),
     "location" : "Render Properties, 3D View > View menu, 3D View > Sidebar (N) > Tool tab",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -24,6 +24,7 @@ bl_info = {
 }
 
 import bpy # pylint: disable=import-error
+import os
 
 from . import (
     dublf,
@@ -42,6 +43,8 @@ class DUBLAST_settings( bpy.types.PropertyGroup ):
     frame_step: bpy.props.IntProperty( name= "Frame Step", description= "Overrides the frame step for the playblast", default = 1, min=1 )
 
     filepath: bpy.props.StringProperty( name="Output Path", description="Directory/name to save playblasts", subtype="FILE_PATH")
+    use_scene_name: bpy.props.BoolProperty( name= "Use scene name", description= "Uses the name of the scene when saving file.", default= True)
+    use_scene_path: bpy.props.BoolProperty( name= "Use scene path", description= "Saves the file next to the scene file.", default= True)
 
     file_format: bpy.props.EnumProperty(
         items = [
@@ -111,7 +114,10 @@ class DUBLAST_PT_playblast_settings(bpy.types.Panel):
 
         b = layout.box()
 
-        b.prop( playblast_settings, "filepath" )
+        b.prop( playblast_settings, "use_scene_path")
+        if not playblast_settings.use_scene_path:
+            b.prop( playblast_settings, "use_scene_name")
+            b.prop( playblast_settings, "filepath" )
         b.prop( playblast_settings, "file_format" )
         if playblast_settings.file_format == 'PNG':
             b.prop( playblast_settings, "color_mode" )
@@ -175,7 +181,28 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
             scene.frame_end = playblast.frame_end
             scene.frame_step = playblast.frame_step
 
-        render.filepath = playblast.filepath
+        blend_filepath = bpy.data.filepath
+        blend_dir = os.path.dirname(blend_filepath)
+        blend_file = bpy.path.basename(blend_filepath)
+        blend_name = os.path.splitext(blend_file)[0]
+
+        if playblast.use_scene_path and not blend_filepath == "":
+            playblast.filepath = blend_dir + "/"
+            playblast.use_scene_name = True
+        if playblast.filepath == "":
+            playblast.filepath = render.filepath
+        
+        if playblast.use_scene_name:
+            if not scene.name == "Scene" or blend_name == "":
+                name = scene.name + "_"
+            else:
+                name = blend_name + "_"
+            if not playblast.filepath.endswith("/") and not playblast.filepath.endswith("\\"):
+                playblast.filepath = playblast.filepath + "/"
+            render.filepath = playblast.filepath + name
+        else:
+            render.filepath = playblast.filepath
+            
         if playblast.file_format == 'MP4':
             render.image_settings.file_format = 'FFMPEG'
             render.ffmpeg.format = 'MPEG4'
