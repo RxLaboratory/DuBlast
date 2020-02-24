@@ -1,8 +1,8 @@
-# DuBlast
+# DuBlast - Duduf Playblast
 
 Quick Playblast tool for Blender
 
-*DuBlast* is part of the DuBLF, the Duduf Blender Framework, a toolset developped by [Duduf](https://duduf.com) & [Rainbox Laboratory](https://rainboxlab.org) for their productions.
+*DuBlast* is part of the DuBLF, the [Duduf Blender Framework](https://rainboxlab.org/tag/blender/), a toolset developped by [Duduf](https://duduf.com) & [Rainbox Laboratory](https://rainboxlab.org) for their productions.
 
 *DuBlast* is an add-on for *Blender* which makes it easy to create and play animation playblasts, without having to change any render or output setting.
 
