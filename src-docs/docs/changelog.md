@@ -2,6 +2,10 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## 2.0.2
+
+- Fixed compatibility issues with Blender 2.82
+
 ## 2.0.0
 
 - Improved the UI of the settings panel.
