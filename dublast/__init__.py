@@ -15,8 +15,8 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (1,1,0),
-    "location" : "Render Properties, 3D View > View menu, 3D View > Sidebar (N) > Tool tab",
+    "version" : (2,0,0),
+    "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
     "category" : "Animation",
@@ -25,10 +25,6 @@ bl_info = {
 
 import bpy # pylint: disable=import-error
 import os
-
-from . import (
-    dublf,
-)
 
 class DUBLAST_settings( bpy.types.PropertyGroup ):
     """Playblast settings for a scene."""
@@ -99,6 +95,7 @@ class DUBLAST_settings( bpy.types.PropertyGroup ):
     use_stamp_note: bpy.props.BoolProperty( name= "Note", description= "Include a custom note", default= False)
     stamp_note_text: bpy.props.StringProperty( name= "Stamp Note text", description="Custom text to appear in the stamp note", default="")
 
+    include_annotations: bpy.props.BoolProperty( name= "Include Annotations", description= "Includes the annotations", default= True)
 
 class DUBLAST_PT_playblast_settings(bpy.types.Panel):
     bl_label = "Playblast"
@@ -110,7 +107,11 @@ class DUBLAST_PT_playblast_settings(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
+        playblast_settings = bpy.context.scene.playblast
         layout.operator('render.playblast', icon= 'FILE_MOVIE')
+        layout.prop(playblast_settings, 'include_annotations')
 
 class DUBLAST_PT_dimensions( bpy.types.Panel ):
     bl_label = "Dimensions"
@@ -218,6 +219,26 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         playblast = scene.playblast
         render = scene.render
 
+        # Setup Annotations (convert to grease pencil)
+        annotationsObj = None
+        if playblast.include_annotations:
+            annotationsData = scene.grease_pencil
+            # Create object and add to scene
+            annotationsObj = bpy.data.objects.new("Annotations", annotationsData)
+            scene.collection.objects.link(annotationsObj)
+            annotationsObj.show_in_front = True
+            annotationsData = annotationsObj.data
+            annotationsData.stroke_thickness_space = 'SCREENSPACE'
+            for layer in annotationsData.layers:
+                layer.use_lights = False
+                layer.tint_color = layer.channel_color
+                layer.tint_factor = 1.0
+                thickness = annotationsObj.grease_pencil_modifiers.new("Thickness", 'GP_THICK')
+                thickness.normalize_thickness = True
+                thickness.thickness = layer.thickness
+                thickness.layer = layer.info
+
+
         # Keep previous values
         resolution_percentage = render.resolution_percentage
         resolution_x = render.resolution_x
@@ -251,10 +272,10 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         codec = render.ffmpeg.codec
         scformat = render.ffmpeg.format
         constant_rate_factor = render.ffmpeg.constant_rate_factor
-        ffmpeg_preset = render.ffmpeg.ffmpeg_preset
         gopsize = render.ffmpeg.gopsize
         audio_codec = render.ffmpeg.audio_codec
         audio_bitrate = render.ffmpeg.audio_bitrate
+        ffmpeg_preset = render.ffmpeg.ffmpeg_preset 
 
         # Set playblast settings
         render.resolution_percentage = playblast.resolution_percentage
@@ -379,6 +400,10 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         render.use_stamp_filename = use_stamp_filename
         render.use_stamp_note = use_stamp_note
         render.stamp_note_text = stamp_note_text
+
+        # Remove annotations
+        if playblast.include_annotations:
+            bpy.data.objects.remove(annotationsObj)
 
         return {'FINISHED'}
 

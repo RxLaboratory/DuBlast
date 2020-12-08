@@ -8,6 +8,8 @@
 
 ## Usage
 
+`3D View ▸ View Menu ▸ Animation Playblast`
+
 It adds an *Animation Playblast* entry in the *View 3D > View* menu.
 
 ![Menu screenshot](img/menu.png)
@@ -30,6 +32,7 @@ You can [adjust these and other settings](settings.md) for playblast creation in
 |Has **custom output format presets** for better animation playback and seek|Needs the user to **manually set the output** to an animator friendly format|
 |**Scales down the size of the text for the metadata** according to the resolution %|**Keeps the same size for the text of the metadata**, no matter the output resolution, which results in huge texts at lower resolution|
 |Atomatically adjusts the rendered animation dimension to **fit the *MP4* requirements** when set to use *MP4*|The user has to **find a fitting resolution %** for the dimensions to have an even number of lines and columns|
+|Is able to **render Annotations** with all *Blender* versions|Does not render annotations (with *Blender* > 2.82)|
 
 ## License
 

@@ -2,7 +2,13 @@
 
 ![Settings Screenshot](img/settings.png)
 
+`Properties ▸ Output Properties ▸ Playblast`
+
 The output settings for *DuBlast* are located in the *Output Settings* Tab of the *Properties* panel.
+
+## Annotations
+
+To render the annotations, DuBlast automatically converts the annotations to a *Grease Pencil* object, and removes it after the rendering process.
 
 ## Camera
 
@@ -27,7 +33,10 @@ A few formats are available (*PNG*, *JPEG*, *AVI JPEG* and *MP4*); all of them a
 
 ## Metadata
 
-You can burn the metadata defined in the scene properties into the image.
+You can burn some metadata into the image.
+
+!!! note
+    These metadata options are not the same as of the scene ; the scene options are kept separated so you can easily have different metadata between the scene and your playblasts.
 
 !!! hint
     The font size set in the scene settings will be scaled according to the *Resolution* setting of the playblast, so that the metadata text is the same size both in the 100% output of the scene and the scaled down playblast
