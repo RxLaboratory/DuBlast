@@ -223,20 +223,21 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         annotationsObj = None
         if playblast.include_annotations:
             annotationsData = scene.grease_pencil
-            # Create object and add to scene
-            annotationsObj = bpy.data.objects.new("Annotations", annotationsData)
-            scene.collection.objects.link(annotationsObj)
-            annotationsObj.show_in_front = True
-            annotationsData = annotationsObj.data
-            annotationsData.stroke_thickness_space = 'SCREENSPACE'
-            for layer in annotationsData.layers:
-                layer.use_lights = False
-                layer.tint_color = layer.channel_color
-                layer.tint_factor = 1.0
-                thickness = annotationsObj.grease_pencil_modifiers.new("Thickness", 'GP_THICK')
-                thickness.normalize_thickness = True
-                thickness.thickness = layer.thickness
-                thickness.layer = layer.info
+            if annotationsData:
+                # Create object and add to scene
+                annotationsObj = bpy.data.objects.new("Annotations", annotationsData)
+                scene.collection.objects.link(annotationsObj)
+                annotationsObj.show_in_front = True
+                annotationsData = annotationsObj.data
+                annotationsData.stroke_thickness_space = 'SCREENSPACE'
+                for layer in annotationsData.layers:
+                    layer.use_lights = False
+                    layer.tint_color = layer.channel_color
+                    layer.tint_factor = 1.0
+                    thickness = annotationsObj.grease_pencil_modifiers.new("Thickness", 'GP_THICK')
+                    thickness.normalize_thickness = True
+                    thickness.thickness = layer.thickness
+                    thickness.layer = layer.info
 
 
         # Keep previous values
@@ -402,7 +403,7 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         render.stamp_note_text = stamp_note_text
 
         # Remove annotations
-        if playblast.include_annotations:
+        if annotationsObj:
             bpy.data.objects.remove(annotationsObj)
 
         return {'FINISHED'}
