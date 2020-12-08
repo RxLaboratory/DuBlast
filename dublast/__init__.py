@@ -82,7 +82,23 @@ class DUBLAST_settings( bpy.types.PropertyGroup ):
     compression: bpy.props.IntProperty( name= "Compression", description= "Amount of time to determine best compression: 0 = no compression with fast file output, 100 = maximum lossless compression with slow file output", default = 15, min=0, max = 100 )
     quality: bpy.props.IntProperty( name= "Quality", description= "Quality for image formats that support lossy compression", default = 50, min=0, max = 100 )
 
-    use_stamp: bpy.props.BoolProperty( name= "Burn Metadata into image", description= "Render the stamp info text in the rendered image.", default= True)
+    use_stamp: bpy.props.BoolProperty( name= "Burn Metadata into image", description= "Render the stamp info text in the rendered image", default= True)
+
+    use_stamp_date: bpy.props.BoolProperty( name= "Date", description= "Include the current date", default= True)
+    use_stamp_time: bpy.props.BoolProperty( name= "Time", description= "Include the current time", default= False)
+    use_stamp_render_time: bpy.props.BoolProperty( name= "Render Time", description= "Include the render time", default= False)
+    use_stamp_frame: bpy.props.BoolProperty( name= "Frame", description= "Include the current frame", default= True)
+    use_stamp_frame_range: bpy.props.BoolProperty( name= "Frame Range", description= "Include the frame range", default= False)
+    use_stamp_memory: bpy.props.BoolProperty( name= "Memory", description= "Include memory usage", default= False)
+    use_stamp_hostname: bpy.props.BoolProperty( name= "Hostname", description= "Include the name of the computer", default= True)
+    use_stamp_camera: bpy.props.BoolProperty( name= "Camera", description= "Include the name of the camera", default= True)
+    use_stamp_lens: bpy.props.BoolProperty( name= "Lens", description= "Include the focal length", default= True)
+    use_stamp_scene: bpy.props.BoolProperty( name= "Scene", description= "Include the name of the scene", default= False)
+    use_stamp_marker: bpy.props.BoolProperty( name= "Marker", description= "Include the name of the last marker.", default= False)
+    use_stamp_filename: bpy.props.BoolProperty( name= "Filename", description= "Include the name of the file.", default= True)
+    use_stamp_note: bpy.props.BoolProperty( name= "Note", description= "Include a custom note", default= False)
+    stamp_note_text: bpy.props.StringProperty( name= "Stamp Note text", description="Custom text to appear in the stamp note", default="")
+
 
 class DUBLAST_PT_playblast_settings(bpy.types.Panel):
     bl_label = "Playblast"
@@ -94,42 +110,97 @@ class DUBLAST_PT_playblast_settings(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.operator('render.playblast', icon= 'FILE_MOVIE')
 
+class DUBLAST_PT_dimensions( bpy.types.Panel ):
+    bl_label = "Dimensions"
+    bl_space_type = "PROPERTIES"
+    bl_region_type = "WINDOW"
+    bl_context = "output"
+    bl_parent_id = "DUBLAST_PT_playblast_settings"
+
+    def draw(self, context):
+        layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
         # Add settings for the current scene
         playblast_settings = bpy.context.scene.playblast
 
-        b = layout.box()
-        b.prop( playblast_settings, "use_camera" )
+        layout.prop( playblast_settings, "use_camera" )
 
-        b = layout.box()
-        b.prop( playblast_settings, "resolution_percentage", slider = True )
+        layout.prop( playblast_settings, "resolution_percentage", slider = True )
 
-        b = layout.box()
-
-        b.prop( playblast_settings, "use_scene_frame_range" )
+        layout.prop( playblast_settings, "use_scene_frame_range" )
         if not playblast_settings.use_scene_frame_range:
-            b.prop( playblast_settings, "frame_start" )  
-            b.prop( playblast_settings, "frame_end" )       
-            b.prop( playblast_settings, "frame_step" ) 
+            layout.prop( playblast_settings, "frame_start" )  
+            layout.prop( playblast_settings, "frame_end" )       
+            layout.prop( playblast_settings, "frame_step" )
 
-        b = layout.box()
+class DUBLAST_PT_output( bpy.types.Panel ):
+    bl_label = "Output"
+    bl_space_type = "PROPERTIES"
+    bl_region_type = "WINDOW"
+    bl_context = "output"
+    bl_parent_id = "DUBLAST_PT_playblast_settings"
+    bl_options = {'DEFAULT_CLOSED'}
 
-        b.prop( playblast_settings, "use_scene_path")
+    def draw(self, context):
+        layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
+        # Add settings for the current scene
+        playblast_settings = bpy.context.scene.playblast
+
+        layout.prop( playblast_settings, "use_scene_path")
         if not playblast_settings.use_scene_path:
-            b.prop( playblast_settings, "use_scene_name")
-            b.prop( playblast_settings, "filepath" )
-        b.prop( playblast_settings, "file_format" )
+            layout.prop( playblast_settings, "use_scene_name")
+            layout.prop( playblast_settings, "filepath" )
+        layout.prop( playblast_settings, "file_format" )
         if playblast_settings.file_format == 'PNG':
-            b.prop( playblast_settings, "color_mode" )
-            b.prop( playblast_settings, "compression", slider = True )
+            layout.prop( playblast_settings, "color_mode" )
+            layout.prop( playblast_settings, "compression", slider = True )
         else:
-            b.prop( playblast_settings, "color_mode_no_alpha" )
-            b.prop( playblast_settings, "quality", slider = True )
+            layout.prop( playblast_settings, "color_mode_no_alpha" )
+            layout.prop( playblast_settings, "quality", slider = True )
 
-        b = layout.box()
+class DUBLAST_PT_stamp( bpy.types.Panel ):
+    bl_label = "Burn metadata into image"
+    bl_space_type = "PROPERTIES"
+    bl_region_type = "WINDOW"
+    bl_context = "output"
+    bl_parent_id = "DUBLAST_PT_playblast_settings"
+    bl_options = {'DEFAULT_CLOSED'}
 
-        b.prop( playblast_settings, "use_stamp" )
+    def draw_header(self,context):
+        layout = self.layout
+        # Add settings for the current scene
+        playblast_settings = bpy.context.scene.playblast
+        layout.prop( playblast_settings, "use_stamp", text ="" )
 
+
+    def draw(self, context):
+        layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
+        playblast_settings = bpy.context.scene.playblast
+        
+        col = layout.column(heading="Include")
+        col.prop( playblast_settings, "use_stamp_date" )
+        col.prop( playblast_settings, "use_stamp_render_time" )
+        col.prop( playblast_settings, "use_stamp_time" )
+        col.prop( playblast_settings, "use_stamp_frame" )
+        col.prop( playblast_settings, "use_stamp_frame_range" )
+        col.prop( playblast_settings, "use_stamp_memory" )
+        col.prop( playblast_settings, "use_stamp_hostname" )
+        col.prop( playblast_settings, "use_stamp_camera" )
+        col.prop( playblast_settings, "use_stamp_lens" )
+        col.prop( playblast_settings, "use_stamp_scene" )
+        col.prop( playblast_settings, "use_stamp_marker" )
+        col.prop( playblast_settings, "use_stamp_filename" )
+        col.prop( playblast_settings, "use_stamp_note" )
+        if playblast_settings.use_stamp_note:
+            col.prop( playblast_settings, "stamp_note_text" )
+     
 class DUBLAST_OT_playblast( bpy.types.Operator ):
     """Renders and plays an animation playblast."""
     bl_idname = "render.playblast"
@@ -161,6 +232,22 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         compression = render.image_settings.compression
         use_stamp = render.use_stamp
         stamp_font_size = render.stamp_font_size
+
+        use_stamp_date = render.use_stamp_date
+        use_stamp_render_time = render.use_stamp_render_time
+        use_stamp_time = render.use_stamp_time
+        use_stamp_frame = render.use_stamp_frame
+        use_stamp_frame_range = render.use_stamp_frame_range
+        use_stamp_memory = render.use_stamp_memory
+        use_stamp_hostname = render.use_stamp_hostname
+        use_stamp_camera = render.use_stamp_camera
+        use_stamp_lens = render.use_stamp_lens
+        use_stamp_scene = render.use_stamp_scene
+        use_stamp_marker = render.use_stamp_marker
+        use_stamp_filename = render.use_stamp_filename
+        use_stamp_note = render.use_stamp_note
+        stamp_note_text = render.stamp_note_text
+
         codec = render.ffmpeg.codec
         scformat = render.ffmpeg.format
         constant_rate_factor = render.ffmpeg.constant_rate_factor
@@ -236,6 +323,21 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
 
         render.use_stamp = playblast.use_stamp
         render.stamp_font_size = render.stamp_font_size * playblast.resolution_percentage / 100
+
+        render.use_stamp_date = playblast.use_stamp_date
+        render.use_stamp_render_time = playblast.use_stamp_render_time
+        render.use_stamp_time = playblast.use_stamp_time
+        render.use_stamp_frame = playblast.use_stamp_frame
+        render.use_stamp_frame_range = playblast.use_stamp_frame_range
+        render.use_stamp_memory = playblast.use_stamp_memory
+        render.use_stamp_hostname = playblast.use_stamp_hostname
+        render.use_stamp_camera = playblast.use_stamp_camera
+        render.use_stamp_lens = playblast.use_stamp_lens
+        render.use_stamp_scene = playblast.use_stamp_scene
+        render.use_stamp_marker = playblast.use_stamp_marker
+        render.use_stamp_filename = playblast.use_stamp_filename
+        render.use_stamp_note = playblast.use_stamp_note
+        render.stamp_note_text = playblast.stamp_note_text
         
         # Render and play
         bpy.ops.render.opengl( animation = True, view_context = not playblast.use_camera )
@@ -263,6 +365,21 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         render.ffmpeg.audio_codec = audio_codec
         render.ffmpeg.audio_bitrate = audio_bitrate
 
+        render.use_stamp_date = use_stamp_date
+        render.use_stamp_render_time = use_stamp_render_time
+        render.use_stamp_time = use_stamp_time
+        render.use_stamp_frame = use_stamp_frame
+        render.use_stamp_frame_range = use_stamp_frame_range
+        render.use_stamp_memory = use_stamp_memory
+        render.use_stamp_hostname = use_stamp_hostname
+        render.use_stamp_camera = use_stamp_camera
+        render.use_stamp_lens = use_stamp_lens
+        render.use_stamp_scene = use_stamp_scene
+        render.use_stamp_marker = use_stamp_marker
+        render.use_stamp_filename = use_stamp_filename
+        render.use_stamp_note = use_stamp_note
+        render.stamp_note_text = stamp_note_text
+
         return {'FINISHED'}
 
 def menu_func(self, context):
@@ -272,6 +389,9 @@ def menu_func(self, context):
 classes = (
     DUBLAST_settings,
     DUBLAST_PT_playblast_settings,
+    DUBLAST_PT_dimensions,
+    DUBLAST_PT_output,
+    DUBLAST_PT_stamp,
     DUBLAST_OT_playblast,
 )
 
