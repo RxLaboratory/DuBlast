@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (2,0,0),
+    "version" : (2,0,2),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -185,7 +185,10 @@ class DUBLAST_PT_stamp( bpy.types.Panel ):
         layout.use_property_decorate = False  # No animation.
         playblast_settings = bpy.context.scene.playblast
         
-        col = layout.column(heading="Include")
+        if bpy.app.version[0] >= 2 and bpy.app.version[1] >= 90:
+            col = layout.column(heading="Include")
+        else:
+            col = layout
         col.prop( playblast_settings, "use_stamp_date" )
         col.prop( playblast_settings, "use_stamp_render_time" )
         col.prop( playblast_settings, "use_stamp_time" )
@@ -231,7 +234,8 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
                 annotationsData = annotationsObj.data
                 annotationsData.stroke_thickness_space = 'SCREENSPACE'
                 for layer in annotationsData.layers:
-                    layer.use_lights = False
+                    if bpy.app.version[0] >= 0 and bpy.app.version[1] >= 90:
+                        layer.use_lights = False
                     layer.tint_color = layer.channel_color
                     layer.tint_factor = 1.0
                     thickness = annotationsObj.grease_pencil_modifiers.new("Thickness", 'GP_THICK')
