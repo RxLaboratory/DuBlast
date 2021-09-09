@@ -15,11 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-<<<<<<< HEAD
     "version" : (2,0,4),
-=======
-    "version" : (2,0,3),
->>>>>>> master
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
