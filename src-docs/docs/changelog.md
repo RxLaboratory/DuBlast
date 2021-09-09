@@ -2,6 +2,10 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## 2.0.3
+
+- Render color depth is now correctly restored after a playblast.
+
 ## 2.0.2
 
 - Fixed compatibility issues with Blender 2.82

@@ -15,7 +15,11 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
+<<<<<<< HEAD
     "version" : (2,0,4),
+=======
+    "version" : (2,0,3),
+>>>>>>> master
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -258,6 +262,7 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         compression = render.image_settings.compression
         use_stamp = render.use_stamp
         stamp_font_size = render.stamp_font_size
+        color_depth = render.image_settings.color_depth
 
         use_stamp_date = render.use_stamp_date
         use_stamp_render_time = render.use_stamp_render_time
@@ -383,6 +388,7 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         render.image_settings.color_mode = color_mode
         render.image_settings.quality = quality
         render.image_settings.compression = compression
+        render.image_settings.color_depth = color_depth
         render.use_stamp = use_stamp
         render.stamp_font_size = stamp_font_size
         render.ffmpeg.format = scformat
