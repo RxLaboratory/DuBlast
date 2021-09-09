@@ -1,3 +1,3 @@
 #!/bin/bash
 mkdocs build
-echo dublast-docs.rainboxlab.org > ../docs/CNAME
+echo dublast.rxlab.guide > ../docs/CNAME

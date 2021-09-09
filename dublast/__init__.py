@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (2,0,4),
+    "version" : (2,1,0),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -25,6 +25,7 @@ bl_info = {
 
 import bpy # pylint: disable=import-error
 import os
+from datetime import datetime
 
 class DUBLAST_settings( bpy.types.PropertyGroup ):
     """Playblast settings for a scene."""
@@ -110,7 +111,8 @@ class DUBLAST_PT_playblast_settings(bpy.types.Panel):
         layout.use_property_split = True
         layout.use_property_decorate = False  # No animation.
         playblast_settings = bpy.context.scene.playblast
-        layout.operator('render.playblast', icon= 'FILE_MOVIE')
+        layout.operator('render.playblast', text="Playblast (overwrite)", icon= 'FILE_MOVIE')
+        layout.operator('render.playblast', text="Playblast (increment)", icon= 'FILE_MOVIE').overwrite = False
         layout.prop(playblast_settings, 'include_annotations')
 
 class DUBLAST_PT_dimensions( bpy.types.Panel ):
@@ -211,6 +213,8 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
     bl_label = "Animation Playblast"
     bl_description = "Render and play an animation playblast."
     bl_option = {'REGISTER'}
+
+    overwrite: bpy.props.BoolProperty(default = True)
 
     @classmethod
     def poll(cls, context):
@@ -318,7 +322,12 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
             render.filepath = playblast.filepath + name
         else:
             render.filepath = playblast.filepath
+
+        if not self.overwrite:
+            # Let's just add the date in the name
+            render.filepath = render.filepath + datetime.now().isoformat(sep=' ', timespec='seconds').replace(':', '-') + '_'
             
+           
         if playblast.file_format == 'MP4':
             render.image_settings.file_format = 'FFMPEG'
             render.ffmpeg.format = 'MPEG4'
@@ -418,7 +427,8 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
 
 def menu_func(self, context):
     self.layout.separator()
-    self.layout.operator('render.playblast', icon= 'FILE_MOVIE')
+    self.layout.operator('render.playblast', text="Animation playblast (overwrite)", icon= 'FILE_MOVIE')
+    self.layout.operator('render.playblast', text="Animation playblast (increment)", icon= 'FILE_MOVIE').overwrite = False
 
 classes = (
     DUBLAST_settings,

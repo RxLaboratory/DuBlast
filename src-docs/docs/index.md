@@ -18,6 +18,9 @@ It renders the animation with the current viewport settings, temporarily overrid
 
 By default, the rendered animation is stored in an *MP4* file, with custom settings tweaked for better animation playback and seekability (it is easy to go frame by frame in these files).
 
+!!! tip
+    If you use the *overwrite* operator, *DuBlast* will always save on the same file. By using the *increment* operator, *DuBlast* appends the date and time to the file so that you can keep the history and compare versions.
+
 You can [adjust these and other settings](settings.md) for playblast creation in the *Output Settings* Tab of the *Properties* panel.
 
 !!! tip

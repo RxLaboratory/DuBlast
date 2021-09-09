@@ -2,6 +2,11 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## 2.1.0
+
+- Fixed some issues with incorrect resolution
+- Ability to increment the video file instead of overwriting
+
 ## 2.0.3
 
 - Render color depth is now correctly restored after a playblast.

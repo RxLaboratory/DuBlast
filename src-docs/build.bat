@@ -1,4 +1,4 @@
 mkdocs build
 @echo off
-echo dublast-docs.rainboxlab.org > ..\docs\CNAME
+echo dublast.rxlab.guide > ../docs/CNAME
 pause

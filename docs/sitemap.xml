@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-     <loc>http://rainboxlab.org/index.html</loc>
-     <lastmod>2021-05-13</lastmod>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>http://dublast.rxlab.guide/</loc>
+     <lastmod>2021-09-09</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://rainboxlab.org/settings.html</loc>
-     <lastmod>2021-05-13</lastmod>
+    </url><url>
+     <loc>http://dublast.rxlab.guide/settings/</loc>
+     <lastmod>2021-09-09</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://rainboxlab.org/changelog.html</loc>
-     <lastmod>2021-05-13</lastmod>
+    </url><url>
+     <loc>http://dublast.rxlab.guide/changelog/</loc>
+     <lastmod>2021-09-09</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://rainboxlab.org/gnu-gpl.html</loc>
-     <lastmod>2021-05-13</lastmod>
+    </url><url>
+     <loc>http://dublast.rxlab.guide/gnu-gpl/</loc>
+     <lastmod>2021-09-09</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://rainboxlab.org/doc-license.html</loc>
-     <lastmod>2021-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc></loc>
-     
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc></loc>
-     
+    </url><url>
+     <loc>http://dublast.rxlab.guide/doc-license/</loc>
+     <lastmod>2021-09-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
