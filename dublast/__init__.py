@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (2,0,2),
+    "version" : (2,0,4),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -283,10 +283,12 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         ffmpeg_preset = render.ffmpeg.ffmpeg_preset 
 
         # Set playblast settings
-        render.resolution_percentage = playblast.resolution_percentage
-        while ( render.resolution_x * playblast.resolution_percentage / 100 ) % 2 != 0:
+        render.resolution_percentage = 100
+        render.resolution_x = playblast.resolution_percentage / 100 * render.resolution_x
+        render.resolution_y = playblast.resolution_percentage / 100 * render.resolution_y
+        if render.resolution_x % 2 != 0:
             render.resolution_x = render.resolution_x + 1
-        while ( render.resolution_y * playblast.resolution_percentage / 100 ) % 2 != 0:
+        if render.resolution_y % 2 != 0:
             render.resolution_y = render.resolution_y + 1
 
         if not playblast.use_scene_frame_range:
