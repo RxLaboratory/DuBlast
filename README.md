@@ -18,6 +18,10 @@ Quick Playblast tool for Blender
 
 🤗 We'd be happy to welcome you on the [forum](https://forum.rainboxlab.org) too.
 
+## Quick Render Buttons
+
+The [_Quick Render Buttons_](https://github.com/Thane5/quickrenderbuttons) add-on [here](https://github.com/Thane5/quickrenderbuttons) is a simple but handy add-on which includes a button for Playblasts by _DuBlast_ (you'll need to install both addons).
+
 ## Screenshots
 
 ![Menu](https://github.com/Rainbox-dev/DuBLF_DuBlast/raw/master/docs/img/menu.png)
