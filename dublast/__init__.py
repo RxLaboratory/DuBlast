@@ -15,8 +15,8 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (2,1,0),
-    "location" : "Properties > Output Properties > Playblast, 3D View > View menu,",
+    "version" : (2,1,1),
+    "location" : "Properties > Output Properties > Playblast, 3D View > View menu",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
     "category" : "Animation",
@@ -228,9 +228,9 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
 
         # Setup Annotations (convert to grease pencil)
         annotationsObj = None
-        if playblast.include_annotations:
-            annotationsData = scene.grease_pencil
-            if annotationsData:
+        annotationsData = scene.grease_pencil
+        # Blender 2.x : we need to convert annotations to actual grease pencil
+        if playblast.include_annotations and bpy.app.version[0] < 3 and annotationsData:
                 # Create object and add to scene
                 annotationsObj = bpy.data.objects.new("Annotations", annotationsData)
                 scene.collection.objects.link(annotationsObj)
@@ -246,6 +246,12 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
                     thickness.normalize_thickness = True
                     thickness.thickness = layer.thickness
                     thickness.layer = layer.info
+        # Blender 3.x : annotations are visible by default, we need to hide them
+        annotationLayersVisibility = []
+        if not playblast.include_annotations and bpy.app.version[0] >= 3 and annotationsData:
+            for layer in annotationsData.layers:
+                annotationLayersVisibility.append(layer.annotation_hide)
+                layer.annotation_hide = True
 
 
         # Keep previous values
@@ -422,6 +428,11 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         # Remove annotations
         if annotationsObj:
             bpy.data.objects.remove(annotationsObj)
+
+        # Reset annnotation visibility
+        if not playblast.include_annotations and bpy.app.version[0] >= 3 and annotationsData:
+            for i, layer in enumerate(annotationsData.layers):
+                layer.annotation_hide = annotationLayersVisibility[i]
 
         return {'FINISHED'}
 
