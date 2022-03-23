@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne",
     "blender" : (2, 81, 0),
-    "version" : (2,1,1),
+    "version" : (2,1,2),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -295,12 +295,12 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
 
         # Set playblast settings
         render.resolution_percentage = 100
-        render.resolution_x = playblast.resolution_percentage / 100 * render.resolution_x
-        render.resolution_y = playblast.resolution_percentage / 100 * render.resolution_y
-        if render.resolution_x % 2 != 0:
-            render.resolution_x = render.resolution_x + 1
-        if render.resolution_y % 2 != 0:
-            render.resolution_y = render.resolution_y + 1
+        render.resolution_x = int( playblast.resolution_percentage / 100 * render.resolution_x )
+        render.resolution_y = int( playblast.resolution_percentage / 100 * render.resolution_y )
+        if render.resolution_x % 4 != 0:
+            render.resolution_x = render.resolution_x - (render.resolution_x % 4)
+        if render.resolution_y % 4 != 0:
+            render.resolution_y = render.resolution_y - (render.resolution_y % 4)
 
         if not playblast.use_scene_frame_range:
             scene.frame_start = playblast.frame_start
@@ -366,7 +366,7 @@ class DUBLAST_OT_playblast( bpy.types.Operator ):
         render.image_settings.compression = playblast.compression
 
         render.use_stamp = playblast.use_stamp
-        render.stamp_font_size = render.stamp_font_size * playblast.resolution_percentage / 100
+        render.stamp_font_size = int( render.stamp_font_size * playblast.resolution_percentage / 100 )
 
         render.use_stamp_date = playblast.use_stamp_date
         render.use_stamp_render_time = playblast.use_stamp_render_time

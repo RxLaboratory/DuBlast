@@ -2,6 +2,10 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## 2.1.2
+
+- Fixed compatibility with *Blender 3.1*
+
 ## 2.1.1
 
 - Fixed some issues with incorrect resolution
