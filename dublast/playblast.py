@@ -192,7 +192,8 @@ class DUBLAST_OT_playblast( Operator ):
                 if area.type == 'VIEW_3D':
                     for space in area.spaces:
                         if space.type == 'VIEW_3D':
-                            spaces_shading.append({"shading":space.shading.type,
+                            spaces_shading.append({
+                                "shading":space.shading.type,
                                 "light":space.shading.light,
                                 "single_color":space.shading.single_color,
                                 "color_type":space.shading.color_type,
@@ -202,9 +203,9 @@ class DUBLAST_OT_playblast( Operator ):
                             space.shading.type = playblast.shading
                             space.shading.light = playblast.light
                             space.shading.color_type = playblast.color_type
-                            scene.shading.single_color = playblast.single_color
-                            scene.shading.background_type = playblast.background_type
-                            scene.shading.background_color = playblast.background_color
+                            space.shading.single_color = playblast.single_color
+                            space.shading.background_type = playblast.background_type
+                            space.shading.background_color = playblast.background_color
 
         # Render and play
         bpy.ops.render.opengl( animation = True, view_context = not playblast.use_camera )

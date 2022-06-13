@@ -75,7 +75,7 @@ def unregister():
         mod.unregister()
 
     # menu
-    bpy.types.VIEW3D_HT_header.remove(timeline_func)
+    bpy.types.VIEW3D_HT_header.remove(view_header_func)
     bpy.types.VIEW3D_MT_view.remove(menu_func)
 
     # keymaps
