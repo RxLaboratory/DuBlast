@@ -265,3 +265,8 @@ ul.nav li a {
 .post-meta ul {
     padding-left:20px;
 }
+
+img.screenshot
+{
+    max-width: 300px;
+}
