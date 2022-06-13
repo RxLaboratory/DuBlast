@@ -87,9 +87,9 @@ class DUBLAST_settings( PropertyGroup ):
 
     light: EnumProperty(
         items = [
-            ('STUDIO', "Studio", "Render using studio lighting", '', 1),
-            ('MATCAP', "MatCap", "Render using matcap material and lighting", '', 2),
-            ('FLAT', "Flat", "Render using flat lighting", '', 3),
+            ('STUDIO', "Studio", "Render using studio lighting.", '', 1),
+            ('MATCAP', "MatCap", "Render using matcap material and lighting.", '', 2),
+            ('FLAT', "Flat", "Render using flat lighting.", '', 3),
         ],
         name = "Lighting",
         description= "Lighting Method for Solid/Texture Viewport Shading",
@@ -98,12 +98,12 @@ class DUBLAST_settings( PropertyGroup ):
 
     color_type: EnumProperty(
         items = [
-            ('MATERIAL', "Material", "Render using material color", '', 1),
-            ('SINGLE', "Single", "Render using a single color", '', 2),
-            ('OBJECT', "Object", "Render using object color", '', 3),
-            ('RANDOM', "Random", "Render using random object color", '', 4),
-            ('VERTEX', "Vertex", "Render using vertex color", '', 5),
-            ('TEXTURE', "Texture", "Render using texture", '', 6),
+            ('MATERIAL', "Material", "Render using material color.", '', 1),
+            ('SINGLE', "Single", "Render using a single color.", '', 2),
+            ('OBJECT', "Object", "Render using object color.", '', 3),
+            ('RANDOM', "Random", "Render using random object color.", '', 4),
+            ('VERTEX', "Vertex", "Render using vertex color.", '', 5),
+            ('TEXTURE', "Texture", "Render using texture.", '', 6),
         ],
         name = "Color",
         description= "Color Type",
@@ -120,9 +120,9 @@ class DUBLAST_settings( PropertyGroup ):
 
     background_type: EnumProperty(
         items = [
-            ('THEME', "Theme", "Use the theme for background color", '', 1),
-            ('WORLD', "World", "Use the world for background color", '', 2),
-            ('VIEWPORT', "Viewport", "Use a custom color limited to this viewport only", '', 3),
+            ('THEME', "Theme", "Use the theme for background color.", '', 1),
+            ('WORLD', "World", "Use the world for background color.", '', 2),
+            ('VIEWPORT', "Viewport", "Use a custom color limited to this viewport only.", '', 3),
         ],
         name = "Background",
         description= "Way to render the background",

@@ -7,7 +7,7 @@ class DUBLAST_OT_playblast( Operator ):
     """Renders and plays an animation playblast."""
     bl_idname = "render.playblast"
     bl_label = "Animation Playblast"
-    bl_description = "Render and play an animation playblast."
+    bl_description = "Render and play an animation playblast"
     bl_option = {'REGISTER'}
 
     overwrite: bpy.props.BoolProperty(default = True)
