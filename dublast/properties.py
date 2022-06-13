@@ -8,7 +8,7 @@ class DUBLAST_settings( PropertyGroup ):
     """Playblast settings for a scene."""
 
     increment: BoolProperty( name= "", description= "Increment playblast with numbers", default= False)
-    use_stamp: BoolProperty( name= "", description= "Render the stamp info text in the rendered image", default= True)
+    use_stamp: BoolProperty( name= "", description= "Render the metadata into the playblast", default= True)
     include_annotations: BoolProperty( name= "", description= "Include Annotations", default= True)
 
     use_camera: BoolProperty( name= "Scene Camera", description= "Use the scene camera", default= False)
