@@ -18,8 +18,8 @@ class DUBLAST_settings( PropertyGroup ):
     frame_step: IntProperty( name= "Step", description= "Overrides the frame step for the playblast", default = 1, min=1 )
 
     filepath: StringProperty( name="Output Path", description="Directory/name to save playblasts", subtype="FILE_PATH")
-    use_scene_name: BoolProperty( name= "Scene Name", description= "Uses the name of the scene when saving file.", default= True)
-    use_scene_path: BoolProperty( name= "Scene Path", description= "Saves the file next to the scene file.", default= True)
+    use_scene_name: BoolProperty( name= "Scene Name", description= "Uses the name of the scene when saving file", default= True)
+    use_scene_path: BoolProperty( name= "Scene Path", description= "Saves the file next to the scene file", default= True)
     resolution_percentage: FloatProperty( name= "Resolution %", description= "Overrides the rendering resolution percentage for the playblast", default = 25.0, min=0.0, max= 100.0, precision=0, subtype='PERCENTAGE')
 
     file_format: EnumProperty(
@@ -36,9 +36,9 @@ class DUBLAST_settings( PropertyGroup ):
 
     color_mode: EnumProperty(
         items = [
-            ('BW', "BW", "Images get saved in 8 bits grayscale.", '', 1),
-            ('RGB', "RGB", "Images are saved with RGB (color) data.", '', 2),
-            ('RGBA', "RGBA", "Images are saved with RGB and Alpha data (if supported).", '', 3)
+            ('BW', "BW", "Images get saved in 8 bits grayscale", '', 1),
+            ('RGB', "RGB", "Images are saved with RGB (color) data", '', 2),
+            ('RGBA', "RGBA", "Images are saved with RGB and Alpha data (if supported)", '', 3)
         ],
         name = "Color",
         description= "Choose BW for saving grayscale images, RGB for saving red, green and blue channels, and RGBA for saving red, green, blue and alpha channels",
@@ -47,11 +47,11 @@ class DUBLAST_settings( PropertyGroup ):
 
     color_mode_no_alpha: EnumProperty(
         items = [
-            ('BW', "BW", "Images get saved in 8 bits grayscale.", '', 1),
-            ('RGB', "RGB", "Images are saved with RGB (color) data.", '', 2)
+            ('BW', "BW", "Images get saved in 8 bits grayscale", '', 1),
+            ('RGB', "RGB", "Images are saved with RGB (color) data", '', 2)
         ],
         name = "Color",
-        description= "Choose BW for saving grayscale images, RGB for saving red, green and blue channels.",
+        description= "Choose BW for saving grayscale images, RGB for saving red, green and blue channels",
         default= 'RGB'
         )
     
@@ -59,7 +59,7 @@ class DUBLAST_settings( PropertyGroup ):
     quality: bpy.props.IntProperty( name= "Quality", description= "Quality for image formats that support lossy compression", default = 50, min=0, max = 100 )
 
     auto_size_stamp_font: BoolProperty( name= "Auto-size Text", description= "Resize text overlay font size based on resolution", default= True)
-    font_size: IntProperty( name= "Font Size", description= "Font size for text overlays", soft_min=1, soft_max=40, default= 14)
+    font_size: IntProperty( name= "Text Size", description= "Font size for text overlays", soft_min=1, soft_max=40, default= 14)
     use_stamp_date: BoolProperty( name= "Date", description= "Include the current date", default= True)
     use_stamp_time: BoolProperty( name= "Time", description= "Include the current time", default= False)
     use_stamp_render_time: BoolProperty( name= "Render Time", description= "Include the render time", default= False)
@@ -70,8 +70,8 @@ class DUBLAST_settings( PropertyGroup ):
     use_stamp_camera: BoolProperty( name= "Camera", description= "Include the name of the camera", default= True)
     use_stamp_lens: BoolProperty( name= "Lens", description= "Include the focal length", default= True)
     use_stamp_scene: BoolProperty( name= "Scene", description= "Include the name of the scene", default= False)
-    use_stamp_marker: BoolProperty( name= "Marker", description= "Include the name of the last marker.", default= False)
-    use_stamp_filename: BoolProperty( name= "Filename", description= "Include the name of the file.", default= True)
+    use_stamp_marker: BoolProperty( name= "Marker", description= "Include the name of the last marker", default= False)
+    use_stamp_filename: BoolProperty( name= "Filename", description= "Include the name of the file", default= True)
     use_stamp_note: BoolProperty( name= "Note", description= "Include a custom note", default= False)
     stamp_note_text: StringProperty( name= "Note Text", description="Custom text to appear in the stamp note", default="")
 
