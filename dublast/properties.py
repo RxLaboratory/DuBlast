@@ -57,7 +57,9 @@ class DUBLAST_settings( PropertyGroup ):
     
     compression: IntProperty( name= "Compression", description= "Amount of time to determine best compression: 0 = no compression with fast file output, 100 = maximum lossless compression with slow file output", default = 15, min=0, max = 100 )
     quality: bpy.props.IntProperty( name= "Quality", description= "Quality for image formats that support lossy compression", default = 50, min=0, max = 100 )
- 
+
+    auto_size_stamp_font: BoolProperty( name= "Auto-size Text", description= "Resize text overlay font size based on resolution", default= True)
+    font_size: IntProperty( name= "Font Size", description= "Font size for text overlays", soft_min=1, soft_max=40, default= 14)
     use_stamp_date: BoolProperty( name= "Date", description= "Include the current date", default= True)
     use_stamp_time: BoolProperty( name= "Time", description= "Include the current time", default= False)
     use_stamp_render_time: BoolProperty( name= "Render Time", description= "Include the render time", default= False)

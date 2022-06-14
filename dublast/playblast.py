@@ -6,7 +6,7 @@ from bpy.app import version
 class DUBLAST_OT_playblast( Operator ):
     """Renders and plays an animation playblast."""
     bl_idname = "render.playblast"
-    bl_label = "Animation Playblast"
+    bl_label = "Playblast"
     bl_description = "Render and play an animation playblast"
     bl_option = {'REGISTER'}
 
@@ -162,7 +162,11 @@ class DUBLAST_OT_playblast( Operator ):
         render.image_settings.compression = playblast.compression
 
         render.use_stamp = playblast.use_stamp
-        render.stamp_font_size = int( render.stamp_font_size * playblast.resolution_percentage / 100 )
+
+        if playblast.auto_size_stamp_font == True:
+            render.stamp_font_size = int( render.stamp_font_size * playblast.resolution_percentage / 100 )
+        else:
+            render.stamp_font_size = playblast.font_size
 
         render.use_stamp_date = playblast.use_stamp_date
         render.use_stamp_render_time = playblast.use_stamp_render_time
