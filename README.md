@@ -24,9 +24,9 @@ The [_Quick Render Buttons_](https://github.com/Thane5/quickrenderbuttons) add-o
 
 ## Screenshots
 
-![Menu](https://github.com/Rainbox-dev/DuBLF_DuBlast/raw/master/docs/img/menu.png)
+![Menu](https://github.com/blastframe/DuBlast/raw/master/docs/img/menu.png)
 
-![Settings](https://github.com/Rainbox-dev/DuBLF_DuBlast/raw/master/docs/img/settings.png)
+![Settings](https://github.com/blastframe/DuBlast/raw/master/docs/img/settings.png)
 
 ## Difference between *DuBlast* and the native *Viewport Render Animation* command
 
