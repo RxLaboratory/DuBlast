@@ -34,16 +34,16 @@ class DUBLAST_PT_Scene( Panel ):
 
     def draw(self, context):
         layout = self.layout
-        layout.use_property_split = False
+        #layout.use_property_split = False
         layout.use_property_decorate = False  # No animation.
         # Add settings for the current scene
         playblast_settings = bpy.context.scene.playblast
         
         col = layout.column(align=False)
-        row = col.row(align=True)
-        #row.label(text='Scene')
-        row.prop( playblast_settings, "use_camera", icon="VIEW_CAMERA", toggle=True)
-        row.prop( playblast_settings, "use_scene_frame_range", icon="PREVIEW_RANGE", toggle=True )
+        col.use_property_split = True
+        col.prop( playblast_settings, "use_camera") #, icon="VIEW_CAMERA"
+        col.prop( playblast_settings, "use_scene_frame_range")  #, icon="PREVIEW_RANGE"
+        layout.separator()
         row = col.row(align=True)
 
         if not playblast_settings.use_scene_frame_range:
@@ -180,16 +180,14 @@ class DUBLAST_PT_Metadata( Panel ):
             "use_stamp_note",
         ]
 
-        col = layout.column()
         row = None
-        for i,m in enumerate(metadata):
-            if i % 3 == 0:
-                row = col.split(factor = 0.33)
-            row.enabled = playblast_settings.use_stamp 
-            row.prop( playblast_settings, m )
+        cf = layout.column_flow(columns=2, align=False)
+        for m in metadata:
+            cf.enabled = playblast_settings.use_stamp 
+            cf.prop( playblast_settings, m )
             if m == "use_stamp_note" and playblast_settings.use_stamp_note == True:
-                col.enabled = playblast_settings.use_stamp
-                col.prop( playblast_settings, "stamp_note_text" )
+                cf.enabled = playblast_settings.use_stamp
+                cf.prop( playblast_settings, "stamp_note_text" )
 
 classes = (
     DUBLAST_PT_Playblast_Settings,
