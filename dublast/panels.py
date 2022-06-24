@@ -125,12 +125,10 @@ class DUBLAST_PT_Output( Panel ):
 
         #layout.use_property_split = False
         layout.prop(playblast_settings, "use_scene_path")
-        col = layout.column()
-        col.enabled = False
         if not playblast_settings.use_scene_path:
-            col.enabled = True
-        col.prop( playblast_settings, "filepath" )
-        col.prop( playblast_settings, "use_scene_name")
+            col = layout.column()
+            col.prop( playblast_settings, "filepath" )
+            col.prop( playblast_settings, "use_scene_name")
 
 class DUBLAST_PT_Metadata( Panel ):
     bl_label = ""
