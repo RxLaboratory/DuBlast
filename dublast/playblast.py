@@ -64,6 +64,8 @@ class DUBLAST_OT_playblast( Operator ):
         compression = render.image_settings.compression
         use_stamp = render.use_stamp
         stamp_font_size = render.stamp_font_size
+        stamp_foreground = render.stamp_foreground
+        stamp_background = render.stamp_background
         color_depth = render.image_settings.color_depth
 
         use_stamp_date = render.use_stamp_date
@@ -168,6 +170,9 @@ class DUBLAST_OT_playblast( Operator ):
         else:
             render.stamp_font_size = playblast.font_size
 
+        render.stamp_foreground = playblast.stamp_foreground
+        render.stamp_background = playblast.stamp_background
+
         render.use_stamp_date = playblast.use_stamp_date
         render.use_stamp_render_time = playblast.use_stamp_render_time
         render.use_stamp_time = playblast.use_stamp_time
@@ -237,6 +242,9 @@ class DUBLAST_OT_playblast( Operator ):
         render.ffmpeg.gopsize = gopsize
         render.ffmpeg.audio_codec = audio_codec
         render.ffmpeg.audio_bitrate = audio_bitrate
+
+        render.stamp_foreground = stamp_foreground
+        render.stamp_background = stamp_background
 
         render.use_stamp_date = use_stamp_date
         render.use_stamp_render_time = use_stamp_render_time

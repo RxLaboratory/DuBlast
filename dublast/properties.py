@@ -58,8 +58,9 @@ class DUBLAST_settings( PropertyGroup ):
     compression: IntProperty( name= "Compression", description= "Amount of time to determine best compression: 0 = no compression with fast file output, 100 = maximum lossless compression with slow file output", default = 15, min=0, max = 100 )
     quality: bpy.props.IntProperty( name= "Quality", description= "Quality for image formats that support lossy compression", default = 50, min=0, max = 100 )
 
-    auto_size_stamp_font: BoolProperty( name= "Auto-size Text", description= "Resize text overlay font size based on resolution", default= True)
+    auto_size_stamp_font: BoolProperty( name= "Auto-size Text", description= "Resize text overlay font size based on resolution", default= False)
     font_size: IntProperty( name= "Text Size", description= "Font size for text overlays", soft_min=1, soft_max=40, default= 14)
+
     use_stamp_date: BoolProperty( name= "Date", description= "Include the current date", default= True)
     use_stamp_time: BoolProperty( name= "Time", description= "Include the current time", default= False)
     use_stamp_render_time: BoolProperty( name= "Render Time", description= "Include the render time", default= False)
@@ -73,6 +74,23 @@ class DUBLAST_settings( PropertyGroup ):
     use_stamp_marker: BoolProperty( name= "Marker", description= "Include the name of the last marker", default= False)
     use_stamp_filename: BoolProperty( name= "Filename", description= "Include the name of the file", default= True)
     use_stamp_note: BoolProperty( name= "Note", description= "Include a custom note", default= False)
+
+    stamp_foreground: FloatVectorProperty(
+            name="Text Color",
+            subtype="COLOR",
+            default=(0.8, 0.8, 0.8, 1.0),
+            size=4,
+            min=0, max=1.0,
+            description="Color to use for metadata text")
+
+    stamp_background: FloatVectorProperty(
+            name="Text Background Color",
+            subtype="COLOR",
+            default=(0.0, 0.0, 0.0, 0.25),
+            size=4,
+            min=0, max=1.0,
+            description="Color to use behind metadata text")
+
     stamp_note_text: StringProperty( name= "Note Text", description="Custom text to appear in the stamp note", default="")
 
     shading: EnumProperty(

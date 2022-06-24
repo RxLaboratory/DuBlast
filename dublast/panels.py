@@ -152,10 +152,12 @@ class DUBLAST_PT_Metadata( Panel ):
         playblast_settings = bpy.context.scene.playblast
         
         layout.prop( playblast_settings, "auto_size_stamp_font" )
-
         row = layout.row()
         row.enabled = not playblast_settings.auto_size_stamp_font
         row.prop( playblast_settings, "font_size" )
+
+        layout.prop( playblast_settings, "stamp_foreground" )
+        layout.prop( playblast_settings, "stamp_background" )
 
         layout.separator()
 
