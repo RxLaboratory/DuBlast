@@ -19,7 +19,7 @@ class DUBLAST_PT_Playblast_Settings( Panel ):
         row = rows.row(align=True)
         row.prop(playblast_settings, 'increment', icon="LINENUMBERS_ON", toggle=True)
         row.prop(playblast_settings, 'use_stamp', icon="INFO", toggle=True)
-        row.prop(playblast_settings, 'include_annotations', icon="TEXT", toggle=True)
+        row.prop(playblast_settings, 'include_annotations', icon="STROKE", toggle=True)
 
 class DUBLAST_PT_Scene( Panel ):
     bl_label = ""
