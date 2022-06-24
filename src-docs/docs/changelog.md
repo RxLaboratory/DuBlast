@@ -2,6 +2,12 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## 3.0.0
+
+- Added Shading controls
+- Added icons to Panels and improved UI
+- Code refactor: separated into panels, playblast, & properties files
+
 ## 2.1.2
 
 - Fixed compatibility with *Blender 3.1*
