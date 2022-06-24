@@ -44,16 +44,14 @@ class DUBLAST_PT_Scene( Panel ):
         col.prop( playblast_settings, "use_camera") #, icon="VIEW_CAMERA"
         col.prop( playblast_settings, "use_scene_frame_range")  #, icon="PREVIEW_RANGE"
         layout.separator()
-        row = col.row(align=True)
 
         if not playblast_settings.use_scene_frame_range:
-            row = layout.row(align=True)
-            row.label(text='Range')
-            row.prop( playblast_settings, "frame_start" )  
-            row.prop( playblast_settings, "frame_end" )
-            row = layout.row(align=True)
-            row.label(text='')
-            row.prop( playblast_settings, "frame_step" )
+            layout = self.layout
+            layout.use_property_split = True
+            col = layout.column(align=True)
+            col.prop(playblast_settings, "frame_start", text="Frame Start")
+            col.prop(playblast_settings, "frame_end", text="End")
+            col.prop(playblast_settings, "frame_step", text="Step")
 
 class DUBLAST_PT_Shading( Panel ):
     bl_label = ""
