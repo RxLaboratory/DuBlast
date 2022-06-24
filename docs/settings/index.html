@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="..">v2.1.2</a>
+                        <a href="..">v3.0.0</a>
                     </li>
                 
                 
@@ -165,11 +165,9 @@
             <li class="first-level active"><a href="#dublast-output-settings">DuBlast Output Settings</a></li>
                 <li class="second-level"><a href="#annotations">Annotations</a></li>
                     
-                <li class="second-level"><a href="#camera">Camera</a></li>
-                    
-                <li class="second-level"><a href="#resolution">Resolution</a></li>
-                    
-                <li class="second-level"><a href="#frame-range">Frame range</a></li>
+                <li class="second-level"><a href="#scene">Scene</a></li>
+
+                <li class="second-level"><a href="#shading">Shading</a></li>
                     
                 <li class="second-level"><a href="#output">Output</a></li>
                     
@@ -183,7 +181,7 @@
         
         
             <li >
-                <a href="../..">v2.1.2</a>
+                <a href="../..">v3.0.0</a>
             </li>
         
         
@@ -238,26 +236,36 @@
         <div class="col-md-9" role="main">
 
 <h1 id="dublast-output-settings"><em>DuBlast</em> Output Settings</h1>
-<p><img alt="Settings Screenshot" src="../img/settings.png" /></p>
+<p><img alt="Settings Screenshot" class="screenshot" src="../img/settings.png" /></p>
 <p><code>Properties ▸ Output Properties ▸ Playblast</code></p>
 <p>The output settings for <em>DuBlast</em> are located in the <em>Output Settings</em> Tab of the <em>Properties</em> panel.</p>
 <h2 id="annotations">Annotations</h2>
-<p>To render the annotations, DuBlast automatically converts the annotations to a <em>Grease Pencil</em> object, and removes it after the rendering process.</p>
-<h2 id="camera">Camera</h2>
-<p>Use the <em>Use scene camera</em> option to force the rendering process to use the camera instead of the current view.</p>
-<h2 id="resolution">Resolution</h2>
-<p>The resolution is a percentage of the output dimensions.</p>
+<p><img alt="Annotations Screenshot" class="screenshot" src="../img/annotations_enabled.png" /></p>
+<p>To render the annotations, enable the Annotations toggle. DuBlast automatically converts the annotations to a <em>Grease Pencil</em> object, and removes it after the rendering process.</p>
+<p><img alt="Annotations Screenshot" class="screenshot" src="../img/annotations.png" /></p>
+<h2 id="scene">Scene</h2>
+<p><img alt="Scene Screenshot" class="screenshot" src="../img/scene.png" /></p>
+<h3 id="camera">Camera</h3>
+<p>Use the <em>Scene Camera</em> option to force the rendering process to use the camera instead of the current view.</p>
+<h3 id="frame-range">Frame range</h3>
+<p>Uncheck the <em>Scene Frame Range</em> option to set a custom frame range for the playblast, different from the scene.</p>
+<h2 id="shading">Shading</h2>
+<p><img alt="Shading Screenshot" class="screenshot" src="../img/shading.png" /></p>
+<p>Specify shading settings for your render. Using the Scene Camera will create an OpenGL render, so Solid shading mode will be used. You can still specify the Lighting and Color with the toggle buttons.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When rendering to <em>MP4</em> (the default), <em>DuBlast</em> will automatically adjust the dimension of the playblast to fit <em>MP4</em> requirements (an even number of columns and lines). This will not affect the scene output settings.</p>
 </div>
-<h2 id="frame-range">Frame range</h2>
-<p>Uncheck the <em>Use scene frame range</em> option to set a custom frame range for the playblast, different from the scene.</p>
 <h2 id="output">Output</h2>
-<p>You can set a custom output path for the playblast, different from the scene/render output.</p>
+<p><img alt="Output Screenshot" class="screenshot" src="../img/output.png" /></p>
+<p>The resolution is a percentage of the output dimensions.</p>
 <p>A few formats are available (<em>PNG</em>, <em>JPEG</em>, <em>AVI JPEG</em> and <em>MP4</em>); all of them are presets carefully crafted to be animator friendly (easy to seek and play). The default is <em>MP4</em>, which will make smaller files for the same quality and can be played easily with any player on any system. These <em>MP4</em> files have custom settings to enable frame by frame seeking. They&rsquo;re also very fast to encode when creating the playblast.</p>
+<p>You can set a custom output path for the playblast, different from the scene/render output.</p>
 <h2 id="metadata">Metadata</h2>
-<p>You can burn some metadata into the image.</p>
+<p>You can burn different metadata into the image by enabling the Metadata toggle.</p>
+<p><img alt="Metadata Screenshot" class="screenshot" src="../img/metadata_enabled.png" /></p>
+<p>Choose which metadata to burn into your render with the checkboxes.</p>
+<p><img alt="Metadata Screenshot" class="screenshot" src="../img/metadata_settings.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These metadata options are not the same as of the scene ; the scene options are kept separated so you can easily have different metadata between the scene and your playblasts.</p>
