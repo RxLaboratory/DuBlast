@@ -4,7 +4,7 @@ addons_path=~/.config/blender/2.91/scripts/addons
 
 src_name=dublast
 dublf_path=../../DuBLF/dublf/
-dupyf_path=../../../DuPYF/DuPYF/dupyf/
+dupyf_path=../../../Python/DuPYF/dupyf/
 
 src_path=../$src_name/
 
@@ -34,3 +34,4 @@ for file in $dupyf_path/*.py; do
 done
 
 echo "Done!"
+sleep 10
