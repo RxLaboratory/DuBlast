@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne, Kevin C. Burke (@blastframe)",
     "blender" : (2, 81, 0),
-    "version" : (3, 0, 0),
+    "version" : (3,1,0),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",
@@ -28,6 +28,10 @@ import bpy
 if "bpy" in locals():
     import importlib
 
+    if "dublf" in locals():
+        importlib.reload(dublf)
+    if "preferences" in locals():
+        importlib.reload(preferences)
     if "properties" in locals():
         importlib.reload(properties)
     if "playblast" in locals():
@@ -35,7 +39,7 @@ if "bpy" in locals():
     if "panels" in locals():
         importlib.reload(panels)
 
-from . import (panels, playblast, properties)
+from . import (preferences, panels, playblast, properties, dublf)
 
 def menu_func(self, context):
     self.layout.separator()
@@ -48,6 +52,8 @@ def view_header_func(self, context):
 addon_keymaps = []
 
 modules = (
+    dublf,
+    preferences,
     properties,
     panels,
     playblast
