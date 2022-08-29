@@ -1,6 +1,6 @@
 #!/bin/bash
 
-addons_path=~/.config/blender/2.91/scripts/addons
+addons_path=~/.config/blender/3.2/scripts/addons
 
 src_name=dublast
 dublf_path=../../DuBLF/dublf/
