@@ -14,8 +14,8 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     {% endblock %}
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="{{ 'css/fontawesome.css'|url }}">
+    <link rel="stylesheet" href="{{ 'css/fontawesome-v4-shims.css'|url }}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
     <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
@@ -77,6 +77,24 @@
         <div class="col-md-3">{% include "toc.html" %}</div>
         <div class="col-md-9" role="main">{% include "content.html" %}</div>
         {% endif %}
+            {%- block next_prev %}
+            {%- if page and (page.next_page or page.previous_page) and not config.theme.disable_nav_previous_next %}
+            <div class="nav-footer">
+            <ul>
+                <li {% if not page.previous_page %}class="disabled nav-footer-prev"{% else %}class="nav-footer-prev"{% endif %}>
+                    <a rel="prev" {% if page.previous_page %}href="{{ page.previous_page.url|url }}"{% endif %}>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li {% if not page.next_page %}class="disabled nav-footer-next"{% else %}class="nav-footer-next"{% endif %}>
+                    <a rel="next" {% if page.next_page %}href="{{ page.next_page.url|url }}"{% endif %}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+            </div>
+            {%- endif %}
+            {%- endblock %}
         {% endblock %}
     </div>
 

@@ -1,7 +1,7 @@
 @echo off
 
 :: The path to the addon
-SET "addons_path=C:\Users\duduf\AppData\Roaming\Blender Foundation\Blender\3.2\scripts\addons"
+SET "addons_path=C:\Users\duduf\AppData\Roaming\Blender Foundation\Blender\3.3\scripts\addons"
 
 :: The repo (current dir)
 SET repoPath=%~dp0..
