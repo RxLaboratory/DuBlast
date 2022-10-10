@@ -2,6 +2,10 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## ▹ 3.1.2
+
+- Fixed and improved update checks
+
 ## ▹ 3.1.1
 
 - Fixed update errors on some systems (Linux, Mac OS)
