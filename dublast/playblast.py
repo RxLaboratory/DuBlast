@@ -17,10 +17,7 @@ class DUBLAST_OT_playblast( Operator ):
         return context.scene is not None
 
     def execute(self, context):
-
-        # Check if an update is available!
-        bpy.ops.dublf.updatebox('INVOKE_DEFAULT', addonModuleName = __package__, discreet = True)
-
+        
         scene = context.scene
         playblast = scene.playblast
         render = scene.render

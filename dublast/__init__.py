@@ -52,7 +52,6 @@ def view_header_func(self, context):
 addon_keymaps = []
 
 modules = (
-    dublf,
     preferences,
     properties,
     panels,

@@ -18,6 +18,23 @@
 # <pep8 compliant>
 
 import bpy
+from bpy.app.handlers import persistent
+from dublast import dublf
+
+class DUBLAST_OpenURL(dublf.ops.OpenURL):
+    bl_idname = "dublast.openurl"
+
+class DUBLAST_UpdateBox(dublf.ops.UpdateBox):
+    bl_idname = "dublast.updatebox"
+    bl_label = "Update available"
+    bl_icon = "INFO"
+
+    discreet: bpy.props.BoolProperty(
+        default=False
+    )
+
+    addonName = __package__
+    openURLOp = DUBLAST_OpenURL.bl_idname
 
 class DUBLAST_Preferences( bpy.types.AddonPreferences ):
     bl_idname = __package__
@@ -35,10 +52,29 @@ class DUBLAST_Preferences( bpy.types.AddonPreferences ):
     def draw(self, context):
         layout = self.layout
         layout.prop(self, "check_updates")
-        layout.operator("dublf.updatebox", text="Check for updates now").addonModuleName = __package__
+        layout.operator("dublast.updatebox", text="Check for updates now")
+
+@persistent
+def checkUpdateHandler(arg1, arg2):
+    bpy.ops.dublast.updatebox('INVOKE_DEFAULT', discreet = True)
+
+classes = (
+    DUBLAST_OpenURL,
+    DUBLAST_UpdateBox,
+    DUBLAST_Preferences,
+)
 
 def register():
-    bpy.utils.register_class(DUBLAST_Preferences)
+    for cls in classes:
+        bpy.utils.register_class(cls)
+
+    # Check for updates after loading a blend file
+    if not checkUpdateHandler in bpy.app.handlers.load_post:
+        bpy.app.handlers.load_post.append(checkUpdateHandler)
 
 def unregister():
-    bpy.utils.unregister_class(DUBLAST_Preferences)
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)
+
+    if checkUpdateHandler in bpy.app.handlers.load_post:
+        bpy.app.handlers.load_post.remove(checkUpdateHandler)
