@@ -2,6 +2,10 @@
 
 This is the list of what has changed since the first public version of *DuBlast*.
 
+## ▹ 3.2.0
+
+- Added presets
+
 ## ▹ 3.1.2
 
 - Fixed and improved update checks

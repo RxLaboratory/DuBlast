@@ -6,6 +6,12 @@
 
 The output settings for *DuBlast* are located in the *Output Settings* Tab of the *Properties* panel.
 
+## Presets
+
+![](img/presets.png)
+
+Use the presets menu to save all your custom settings in handy presets.
+
 ## Operator
 
 ![Operator Screenshot](img/operator.png)

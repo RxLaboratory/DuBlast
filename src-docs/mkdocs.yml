@@ -27,7 +27,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v3.1.2: index.md
+    - v3.2.0: index.md
     - Settings: settings.md
     - Add-on Preferences: preferences.md
     - ...:
