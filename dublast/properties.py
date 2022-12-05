@@ -7,7 +7,7 @@ from bpy.props import (BoolProperty, IntProperty, FloatProperty,
 class DUBLAST_settings( PropertyGroup ):
     """Playblast settings for a scene."""
 
-    increment: BoolProperty( name= "", description= "Increment playblast with numbers", default= False)
+    increment: BoolProperty( name= "", description= "Increment playblast with numbers", default=False)
     use_stamp: BoolProperty( name= "", description= "Render the metadata into the playblast", default= True)
     include_annotations: BoolProperty( name= "", description= "Include Annotations", default= True)
 

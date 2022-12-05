@@ -1,5 +1,19 @@
+import os
 import bpy
-from bpy.types import Panel
+from bpy.types import Panel, Menu
+from bl_ui.utils import PresetPanel
+
+class DUBLAST_MT_presets(Menu):
+    bl_label = 'Playblast Presets'
+    preset_subdir = 'playblast'
+    preset_operator = 'script.execute_preset'
+    draw = Menu.draw_preset
+
+class DUBLAST_PT_Playblast_presets(PresetPanel, Panel):
+    bl_label = "Playblast Presets"
+    preset_subdir = "playblast"
+    preset_operator = "script.execute_preset"
+    preset_add_operator = "render.playblast_preset_add"
 
 class DUBLAST_PT_Playblast_Settings( Panel ):
     bl_label = "Playblast"
@@ -8,6 +22,9 @@ class DUBLAST_PT_Playblast_Settings( Panel ):
     bl_context = "output"
     bl_options = {'DEFAULT_CLOSED'}
     COMPAT_ENGINES = {'BLENDER_RENDER'}
+
+    def draw_header_preset(self, _context):
+        DUBLAST_PT_Playblast_presets.draw_panel_header(self.layout)
 
     def draw(self, context):
         layout = self.layout
@@ -188,6 +205,8 @@ class DUBLAST_PT_Metadata( Panel ):
                 cf.prop( playblast_settings, "stamp_note_text" )
 
 classes = (
+    DUBLAST_MT_presets,
+    DUBLAST_PT_Playblast_presets,
     DUBLAST_PT_Playblast_Settings,
     DUBLAST_PT_Scene,
     DUBLAST_PT_Shading,
@@ -198,6 +217,15 @@ classes = (
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
+
+    # Save default presets!
+    preset_path = os.path.join(
+        bpy.utils.resource_path('USER'),
+        "scripts", "presets", "playblast"
+        )
+
+    if not os.path.isdir(preset_path):
+        os.makedirs(preset_path)
 
 def unregister():
     for cls in reversed(classes):

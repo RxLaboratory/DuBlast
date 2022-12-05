@@ -1,7 +1,69 @@
-import bpy, os
+import os
 from datetime import datetime
+import bpy
 from bpy.types import Operator
+from bl_operators.presets import AddPresetBase
 from bpy.app import version
+
+class DUBLAST_OT_playblast_preset_add( AddPresetBase, Operator ):
+    """Renders and plays an animation playblast."""
+    bl_idname = "render.playblast_preset_add"
+    bl_label = "Add Playblast Preset"
+    bl_description = "Add or remove a playblast preset"
+    preset_menu = 'DUBLAST_MT_presets'
+
+    # Common variable used for all preset values
+    preset_defines = [ 'playblast = bpy.context.scene.playblast' ]
+
+    # Properties to store in the preset
+    preset_values = [
+                        'playblast.increment',
+                        'playblast.use_stamp',
+                        'playblast.include_annotations',
+                        'playblast.use_camera',
+                        'playblast.use_scene_frame_range',
+                        'playblast.frame_start',
+                        'playblast.frame_end',
+                        'playblast.frame_step',
+                        'playblast.filepath',
+                        'playblast.use_scene_name',
+                        'playblast.use_scene_path',
+                        'playblast.resolution_percentage',
+                        'playblast.file_format',
+                        'playblast.color_mode',
+                        'playblast.color_mode_no_alpha',
+                        'playblast.compression',
+                        'playblast.quality',
+                        'playblast.auto_size_stamp_font',
+                        'playblast.font_size',
+                        'playblast.use_stamp_date',
+                        'playblast.use_stamp_time',
+                        'playblast.use_stamp_render_time',
+                        'playblast.use_stamp_frame',
+                        'playblast.use_stamp_frame_range',
+                        'playblast.use_stamp_memory',
+                        'playblast.use_stamp_hostname',
+                        'playblast.use_stamp_camera',
+                        'playblast.use_stamp_lens',
+                        'playblast.use_stamp_scene',
+                        'playblast.use_stamp_marker',
+                        'playblast.use_stamp_filename',
+                        'playblast.use_stamp_note',
+                        'playblast.stamp_foreground',
+                        'playblast.stamp_background',
+                        'playblast.stamp_note_text',
+                        'playblast.shading',
+                        'playblast.light',
+                        'playblast.color_type',
+                        'playblast.single_color',
+                        'playblast.background_type',
+                        'playblast.background_color',
+                    ]
+
+    # Directory to store the presets
+    preset_subdir = 'playblast'
+
+    remove_active = True
 
 class DUBLAST_OT_playblast( Operator ):
     """Renders and plays an animation playblast."""
@@ -285,6 +347,7 @@ class DUBLAST_OT_playblast( Operator ):
         return {'FINISHED'}
 
 def register():
+    bpy.utils.register_class(DUBLAST_OT_playblast_preset_add)
     bpy.utils.register_class(DUBLAST_OT_playblast)
     
 def unregister():

@@ -20,6 +20,7 @@
 import bpy
 from bpy.app.handlers import persistent
 from dublast import dublf
+from .properties import DUBLAST_settings
 
 class DUBLAST_OpenURL(dublf.ops.OpenURL):
     bl_idname = "dublast.openurl"
@@ -48,6 +49,8 @@ class DUBLAST_Preferences( bpy.types.AddonPreferences ):
     last_update_check: bpy.props.IntProperty(
         default=0
     )
+
+    default_playblast_settings: bpy.props.PointerProperty( type=DUBLAST_settings )
 
     def draw(self, context):
         layout = self.layout
