@@ -6,7 +6,7 @@ Quick Playblast tool for Blender
 
 The canonical repository for DuBlast is [on
 Codeberg](https://codeberg.org/RxLaboratory/DuBlast) but we maintain [a
-mirror on GitHub](https://github.com/RxLaboratory/DuBlast) for the
+mirror on GitHub](https://github.com/RxLaboratory/DuBlast/tree/master) for the
 time being in order to ease the transition. Please update your links
 and git remotes.
 
