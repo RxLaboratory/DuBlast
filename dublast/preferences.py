@@ -36,6 +36,10 @@ class DUBLAST_UpdateBox(dublf.ops.UpdateBox):
     addonName = __package__
     openURLOp = DUBLAST_OpenURL.bl_idname
 
+class DUBLAST_OT_ReportIssue( dublf.ops.DUBLF_OT_ReportIssue ):
+    bl_idname = "dublast.reportissue"
+    addonName = __package__
+
 class DUBLAST_Preferences( bpy.types.AddonPreferences ):
     bl_idname = __package__
 
@@ -53,6 +57,7 @@ class DUBLAST_Preferences( bpy.types.AddonPreferences ):
         layout = self.layout
         layout.prop(self, "check_updates")
         layout.operator("dublast.updatebox", text="Check for updates now")
+        layout.operator("dublast.reportissue")
 
 @persistent
 def checkUpdateHandler(arg1, arg2):
@@ -61,6 +66,7 @@ def checkUpdateHandler(arg1, arg2):
 classes = (
     DUBLAST_OpenURL,
     DUBLAST_UpdateBox,
+    DUBLAST_OT_ReportIssue,
     DUBLAST_Preferences,
 )
 
