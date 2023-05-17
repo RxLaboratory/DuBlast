@@ -129,6 +129,17 @@ class DUBLAST_settings( PropertyGroup ):
         description= "Color Type",
         default= 'MATERIAL'
         )
+    
+    wireframe_color_type: EnumProperty(
+        items = [
+            ('SINGLE', "Single", "Render using a single color.", '', 2),
+            ('OBJECT', "Object", "Render using object color.", '', 3),
+            ('RANDOM', "Random", "Render using random object color.", '', 4),
+        ],
+        name = "Color",
+        description= "Color Type",
+        default= 'SINGLE'
+        )
 
     single_color: FloatVectorProperty(
             name="",
