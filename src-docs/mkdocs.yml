@@ -1,10 +1,10 @@
 site_name: DuBlast
 site_url: http://dublast.rxlab.guide
-repo_url: https://github.com/RxLaboratory/DuBLF_DuBlast/
-edit_uri: edit/master/src-docs/docs/
+repo_url: https://codeberg.org/RxLaboratory/DuBlast/
+edit_uri: _edit/master/src-docs/docs/
 site_description: The DuBlast comprehensive documentation
 site_author: Nicolas Dufresne and contributors
-copyright: 'Copyright © 2020-2022 <a href="https://rxlaboratory.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
+copyright: 'Copyright © 2020-2023 <a href="https://rxlaboratory.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
 theme:
     name: null
     custom_dir: 'cinder'
@@ -27,11 +27,11 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v3.2.0: index.md
+    - v3.3.0: index.md
     - Settings: settings.md
     - Add-on Preferences: preferences.md
     - ...:
-        - Changelog: changelog.md
+        - Changelog: https://codeberg.org/RxLaboratory/DuBlast/releases
         - License:
             - GNU GPLv3: gnu-gpl.md
             - Documentation license: doc-license.md
