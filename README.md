@@ -1,16 +1,14 @@
 # DuBlast - Duduf Playblast
 
-<img src="https://codeberg.org/RxLaboratory/DuBlast/raw/master/docs/img/settings.png" align="right" />
+<img src="https://codeberg.org/RxLaboratory/DuBlast/raw/master/docs/img/settings_small.png" align="right" />
 
 Quick Playblast tool for Blender
 
 [![Blender](https://img.shields.io/badge/Blender-Win%20|%20Mac%20|%20Linux-informational?color=lightgrey&logo=blender)](#) [![License](https://img.shields.io/badge/License-GPLv3-informational?color=lightgrey&logo=gnu)](LICENSE.md)
 
-
-
 ## What's this?
 
-*DuBlast* is an add-on for *Blender* which makes it easy to create and play animation playblasts, without having to change any render or output setting.
+*DuBlast* is an add-on for *Blender* which makes it quick and easy to create and play animation playblasts, without having to change any render or output setting.
 
 - 📖 A **comprehensive user documentation** is [available here](http://dublast.rxlab.guide/).
 
@@ -18,7 +16,8 @@ Quick Playblast tool for Blender
 
 - 📣 You can also **help us and get nice perks** by [becoming a member of RxLaboratory](http://membership.rxlab.info), or you can [make a donation to RxLab.](https://donate.rxlab.info) to help the development all our free tools.
 
-![Menu](https://github.com/RxLaboratory/DuBlast/raw/master/docs/img/menu.png)
+![Menu](https://codeberg.org/RxLaboratory/DuBlast/raw/master/docs/img/menu.png)
+![Quick Button](https://codeberg.org/RxLaboratory/DuBlast/raw/master/docs/img/quick_button.png)
 
 ## Quick Render Buttons
 
