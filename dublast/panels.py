@@ -81,7 +81,7 @@ class DUBLAST_PT_Shading( Panel ):
     def draw_header(self,context):
         self.layout.label(text="Shading", icon="SHADING_TEXTURE")
 
-    def draw_shading(self, layout, playblast_settings):
+    def draw_solid_shading(self, layout, playblast_settings):
         layout.use_property_split = False
         layout.label(text='Lighting')
         layout.prop( playblast_settings, "light", expand=True )
@@ -89,7 +89,21 @@ class DUBLAST_PT_Shading( Panel ):
         col.label(text='Color')
         col.grid_flow(columns=3, align=True).prop(playblast_settings, "color_type", expand=True)
         if playblast_settings.color_type == 'SINGLE':
-            col.row().prop(playblast_settings, "single_color") 
+            col.row().prop(playblast_settings, "single_color")
+
+    def draw_wireframe_shading(self, layout, playblast_settings):
+        layout.use_property_split = False
+        col = layout.column()
+        col.label(text='Color')
+        col.grid_flow(columns=3, align=True).prop(playblast_settings, "wireframe_color_type", expand=True)
+
+    def draw_background(self, layout, playblast_settings):
+        col = layout.column()
+        col.use_property_split = False
+        col.label(text='Background')
+        col.row().prop( playblast_settings, "background_type", expand=True )
+        if playblast_settings.background_type == 'VIEWPORT':
+            col.row().prop(playblast_settings, "background_color")
 
     def draw(self, context):
         layout = self.layout
@@ -98,20 +112,16 @@ class DUBLAST_PT_Shading( Panel ):
         # Add settings for the current scene
         playblast_settings = bpy.context.scene.playblast
 
-        if playblast_settings.use_camera == False:
-            layout.use_property_split = False
-            layout.label(text='Viewport Shading')
-            layout.prop( playblast_settings, "shading", expand=True )
-            if playblast_settings.shading == "SOLID":
-                self.draw_shading(layout,playblast_settings)
-                col = layout.column()
-                col.use_property_split = False
-                col.label(text='Background')
-                col.row().prop( playblast_settings, "background_type", expand=True )
-                if playblast_settings.background_type == 'VIEWPORT':
-                    col.row().prop(playblast_settings, "background_color")
-        else:
-            self.draw_shading(layout,playblast_settings)
+        layout.use_property_split = False
+        layout.label(text='Viewport Shading')
+        layout.prop( playblast_settings, "shading", expand=True )
+        if playblast_settings.shading == "SOLID":
+            self.draw_solid_shading(layout,playblast_settings)
+            self.draw_background(layout,playblast_settings)
+        elif playblast_settings.shading == 'WIREFRAME':
+            self.draw_wireframe_shading(layout,playblast_settings)
+            self.draw_background(layout,playblast_settings)
+            
 
 class DUBLAST_PT_Output( Panel ):
     bl_label = ""

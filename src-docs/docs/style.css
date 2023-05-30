@@ -54,6 +54,10 @@ figure {
     border-left: 7px solid;
 }
 
+.admonition.tip {
+    border-left-color: #6acd74;
+}
+
 .navbar-default {
     border-bottom: 0;
     background-color: #333;

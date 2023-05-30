@@ -15,7 +15,7 @@ bl_info = {
     "name" : "DuBlast",
     "author" : "Nicolas 'Duduf' Dufresne, Kevin C. Burke (@blastframe)",
     "blender" : (2, 81, 0),
-    "version" : (3,2,0),
+    "version" : (3,3,0),
     "location" : "Properties > Output Properties > Playblast, 3D View > View menu",
     "description" : "Create playblasts: Quickly render and play viewport animation.",
     "warning" : "",

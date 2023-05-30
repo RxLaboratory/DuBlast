@@ -1,6 +1,6 @@
 # DuBlast - Duduf Playblast
 
-Quick Playblast tool for Blender
+<img src="https://codeberg.org/RxLaboratory/DuBlast/raw/master/docs/img/settings_small.png" align="right" />
 
 ## Relocation notice!
 

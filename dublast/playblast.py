@@ -4,6 +4,7 @@ import bpy
 from bpy.types import Operator
 from bl_operators.presets import AddPresetBase
 from bpy.app import version
+from dublast.dublf.window import popup_camera_view
 
 class DUBLAST_OT_playblast_preset_add( AddPresetBase, Operator ):
     """Renders and plays an animation playblast."""
@@ -110,7 +111,6 @@ class DUBLAST_OT_playblast( Operator ):
             for layer in annotationsData.layers:
                 annotationLayersVisibility.append(layer.annotation_hide)
                 layer.annotation_hide = True
-
 
         # Keep previous values
         resolution_percentage = render.resolution_percentage
@@ -251,36 +251,54 @@ class DUBLAST_OT_playblast( Operator ):
         render.stamp_note_text = playblast.stamp_note_text
         spaces_shading = list()
 
-        if playblast.use_camera == True:            
-            scene.display.shading.type = playblast.shading
-            scene.display.shading.light = playblast.light
-            scene.display.shading.color_type = playblast.color_type
-            scene.display.shading.single_color = playblast.single_color
-            scene.display.shading.background_type = playblast.background_type
-            scene.display.shading.background_color = playblast.background_color
-        else:
-            for area in bpy.context.screen.areas:
-                if area.type == 'VIEW_3D':
-                    for space in area.spaces:
-                        if space.type == 'VIEW_3D':
-                            spaces_shading.append({
-                                "shading":space.shading.type,
-                                "light":space.shading.light,
-                                "single_color":space.shading.single_color,
-                                "color_type":space.shading.color_type,
-                                "background_type":space.shading.background_type,
-                                "background_color":space.shading.background_color
-                                })
-                            space.shading.type = playblast.shading
-                            space.shading.light = playblast.light
+        for area in bpy.context.screen.areas:
+            if area.type == 'VIEW_3D':
+                for space in area.spaces:
+                    if space.type == 'VIEW_3D':
+                        s = {
+                            "shading":space.shading.type,
+                            "light":space.shading.light,
+                            "single_color":space.shading.single_color,
+                            "color_type":space.shading.color_type,
+                            "wireframe_color_type":space.shading.wireframe_color_type,
+                            "background_type":space.shading.background_type,
+                            "background_color":space.shading.background_color,
+                            "view_perspective":space.region_3d.view_perspective,
+                            "view_matrix":space.region_3d.view_matrix
+                            }
+                        spaces_shading.append((space, s))
+                        if playblast.use_camera == True:
+                            space.region_3d.view_perspective = 'CAMERA'
+                        space.shading.type = playblast.shading
+                        space.shading.light = playblast.light
+                        if playblast.shading == 'SOLID':
                             space.shading.color_type = playblast.color_type
-                            space.shading.single_color = playblast.single_color
-                            space.shading.background_type = playblast.background_type
-                            space.shading.background_color = playblast.background_color
+                        elif playblast.shading == 'WIREFRAME':
+                            space.shading.wireframe_color_type = playblast.wireframe_color_type
+                        space.shading.single_color = playblast.single_color
+                        space.shading.background_type = playblast.background_type
+                        space.shading.background_color = playblast.background_color
+                        break
 
         # Render and play
-        bpy.ops.render.opengl( animation = True, view_context = not playblast.use_camera )
+        bpy.ops.render.opengl( animation = True, view_context = True )
         bpy.ops.render.play_rendered_anim( )
+
+        for s in spaces_shading:
+            space = s[0]
+            s = s[1]
+            if playblast.use_camera == True:
+                space.region_3d.view_perspective = s["view_perspective"]
+                space.region_3d.view_matrix = s["view_matrix"]
+            space.shading.type = s["shading"]
+            space.shading.light = s["light"]
+            space.shading.single_color = s["single_color"]
+            if space.shading.type == 'SOLID':
+                space.shading.color_type = s["color_type"]
+            elif space.shading.type == 'WIREFRAME':
+                space.shading.wireframe_color_type = s["wireframe_color_type"]
+            space.shading.background_color = s["background_color"]
+            space.shading.background_type = s["background_type"]
 
         # Re-set settings
         render.resolution_percentage = resolution_percentage
@@ -323,18 +341,6 @@ class DUBLAST_OT_playblast( Operator ):
         render.use_stamp_note = use_stamp_note
         render.stamp_note_text = stamp_note_text
 
-        if playblast.use_camera == False:            
-            for area in bpy.context.screen.areas:
-                if area.type == 'VIEW_3D':
-                    for i,space in enumerate(area.spaces):
-                        if space.type == 'VIEW_3D':
-                            space.shading.type = spaces_shading[i]["shading"]
-                            space.shading.light = spaces_shading[i]["light"]
-                            space.shading.single_color = spaces_shading[i]["single_color"]
-                            space.shading.color_type = spaces_shading[i]["color_type"]
-                            space.shading.background_color = spaces_shading[i]["background_color"]
-                            space.shading.background_type = spaces_shading[i]["background_type"]
-
         # Remove annotations
         if annotationsObj:
             bpy.data.objects.remove(annotationsObj)
@@ -346,9 +352,15 @@ class DUBLAST_OT_playblast( Operator ):
 
         return {'FINISHED'}
 
+classes = (
+    DUBLAST_OT_playblast_preset_add,
+    DUBLAST_OT_playblast,
+)
+
 def register():
-    bpy.utils.register_class(DUBLAST_OT_playblast_preset_add)
-    bpy.utils.register_class(DUBLAST_OT_playblast)
+    for cls in classes:
+        bpy.utils.register_class(cls)
     
 def unregister():
-    bpy.utils.unregister_class(DUBLAST_OT_playblast)
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)

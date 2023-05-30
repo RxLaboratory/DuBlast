@@ -1,18 +1,20 @@
-# DuBlast
-
-![Icon](img/dublast.png)
+# ![Icon](img/dublast.png) DuBlast
 
 *DuBlast* is an add-on for *Blender* which makes it easy to create and play animation playblasts, without having to change any render or output setting.
 
-[You can download it here](https://rxlaboratory.org/tools/dublast-for-blender/).
+**▶ [You can download it here](https://rxlaboratory.org/tools/dublast-for-blender/)**.
 
 ## Usage
 
 `3D View ▸ View Menu ▸ Animation Playblast`
 
-It adds an *Animation Playblast* entry in the *View 3D > View* menu.
+DuBlast adds an *Animation Playblast* entry in the *View 3D > View* menu.
 
 ![Menu screenshot](img/menu.png)
+
+It also adds a quick render button in the header of the *View 3D* area.
+
+![Button screenshot](img/quick_button.png)
 
 It renders the animation with the current viewport settings, temporarily overriding the output settings. By default, it will render the animation with a resolution of 25% of the output dimensions, in the default temp folder for your system. It then automatically opens and plays the animation.
 
@@ -24,7 +26,7 @@ By default, the rendered animation is stored in an *MP4* file, with custom setti
 You can [adjust these and other settings](settings.md) for playblast creation in the *Output Settings* Tab of the *Properties* panel.
 
 !!! tip
-    You can [Right Click] on the menu item and choose *Change Shortcut* to assign it a handy keyboard shortcut.
+    You can `[Right Click]` on the menu item and choose *Change Shortcut* to assign it a handy keyboard shortcut.
 
 ## Difference between *DuBlast* and the native *Viewport Render Animation* command
 
