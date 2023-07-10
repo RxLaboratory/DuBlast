@@ -145,8 +145,8 @@ class DUBLAST_OT_playblast( Operator ):
         use_stamp_note = render.use_stamp_note
         stamp_note_text = render.stamp_note_text
 
-        codec = render.ffmpeg.codec
         scformat = render.ffmpeg.format
+        codec = render.ffmpeg.codec
         constant_rate_factor = render.ffmpeg.constant_rate_factor
         gopsize = render.ffmpeg.gopsize
         audio_codec = render.ffmpeg.audio_codec
@@ -309,12 +309,7 @@ class DUBLAST_OT_playblast( Operator ):
         scene.frame_step = frame_step
         render.filepath = filepath
         render.image_settings.file_format = file_format
-        render.image_settings.color_mode = color_mode
-        render.image_settings.quality = quality
-        render.image_settings.compression = compression
-        render.image_settings.color_depth = color_depth
-        render.use_stamp = use_stamp
-        render.stamp_font_size = stamp_font_size
+
         render.ffmpeg.format = scformat
         render.ffmpeg.codec = codec
         render.ffmpeg.constant_rate_factor = constant_rate_factor
@@ -322,6 +317,13 @@ class DUBLAST_OT_playblast( Operator ):
         render.ffmpeg.gopsize = gopsize
         render.ffmpeg.audio_codec = audio_codec
         render.ffmpeg.audio_bitrate = audio_bitrate
+
+        render.image_settings.compression = compression
+        render.image_settings.color_mode = color_mode
+        render.image_settings.quality = quality
+        render.image_settings.color_depth = color_depth
+        render.use_stamp = use_stamp
+        render.stamp_font_size = stamp_font_size
 
         render.stamp_foreground = stamp_foreground
         render.stamp_background = stamp_background
