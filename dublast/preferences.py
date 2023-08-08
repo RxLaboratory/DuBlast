@@ -18,7 +18,6 @@
 # <pep8 compliant>
 
 import bpy
-from bpy.app.handlers import persistent
 from dublast import dublf
 
 class DUBLAST_OpenURL(dublf.ops.OpenURL):
@@ -59,10 +58,6 @@ class DUBLAST_Preferences( bpy.types.AddonPreferences ):
         layout.operator("dublast.updatebox", text="Check for updates now")
         layout.operator("dublast.reportissue")
 
-@persistent
-def checkUpdateHandler(arg1, arg2):
-    bpy.ops.dublast.updatebox('INVOKE_DEFAULT', discreet = True)
-
 classes = (
     DUBLAST_OpenURL,
     DUBLAST_UpdateBox,
@@ -73,10 +68,6 @@ classes = (
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
-
-    # Check for updates after loading a blend file
-    if not checkUpdateHandler in bpy.app.handlers.load_post:
-        bpy.app.handlers.load_post.append(checkUpdateHandler)
 
 def unregister():
     for cls in reversed(classes):

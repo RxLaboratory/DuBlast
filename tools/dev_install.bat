@@ -1,7 +1,7 @@
 @echo off
 
 :: The path to Blender
-SET "blender_config_path=%appData%\Blender Foundation\Blender\3.3"
+SET "blender_config_path=%appData%\Blender Foundation\Blender\3.6"
 
 :: The repo and dependencies
 SET repoPath=%~dp0..

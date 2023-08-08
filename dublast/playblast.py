@@ -80,6 +80,9 @@ class DUBLAST_OT_playblast( Operator ):
         return context.scene is not None
 
     def execute(self, context):
+
+        # Check for updates
+        bpy.ops.dublast.updatebox('INVOKE_DEFAULT', discreet = True)
         
         scene = context.scene
         playblast = scene.playblast
