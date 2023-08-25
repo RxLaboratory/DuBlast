@@ -20,5 +20,6 @@
             "title": "Linux"
         }
     ],
-    "userGuide": "http://dublast.rxlab.guide"
+    "userGuide": "http://dublast.rxlab.guide",
+    "description": "Quick Playblast tool for Blender"
 }
