@@ -6,6 +6,10 @@ title: "[BUG] "
 labels:
 
 - bug
-- "needs triagge"
+- "needs triage"
 
 ---
+
+# Bug Report
+
+<!-- Please, add as many details as possible. Thanks for your feedback! -->
