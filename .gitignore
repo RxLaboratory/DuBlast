@@ -123,4 +123,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Foldex stuff
+.foldex.ini
+
+# Dependencies
 dublast/dublf
