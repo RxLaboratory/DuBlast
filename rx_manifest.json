@@ -2,6 +2,7 @@
     "title": "DuBlast",
     "description": "Quick Playblast tool for Blender.",
     "readme": "https://codeberg.org/Duduf-Blender/DuBlast/raw/branch/rxlaboratorio-manifest-v2/HOME.md",
+    "tags": ["blender", "playblast", "preview", "animation"],
     "version": "3.3.2",
     "date": "2023-08-08",
     "prerelease-version": "",
