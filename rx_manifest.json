@@ -1,5 +1,18 @@
 {
     "title": "DuBlast",
+    "description": "Quick Playblast tool for Blender.",
+    "readme": "https://codeberg.org/Duduf-Blender/DuBlast/raw/branch/rxlaboratorio-manifest-v2/HOME.md",
+    "version": "3.3.2",
+    "date": "2023-08-08",
+    "prerelease-version": "",
+    "prerelease-date": "",
+    "changelog": "https://codeberg.org/Duduf-Blender/DuBlast/releases",
+    "source": "https://codeberg.org/Duduf-Blender/DuBlast",
+    "archive": "https://codeberg.org/Duduf-Blender/DuBlast/releases",
+    "license": {
+        "title": "GNU GPL-v3",
+        "url": "https://rxlaboratorio.org/license-gpl/"
+    },
     "hosts": [
         {
             "name": "blender",
@@ -8,18 +21,38 @@
     ],
     "os": [
         {
-            "name": "mac",
-            "title": "macOS"
-        },
-        {
             "name": "win",
             "title": "Windows"
+        },
+        {
+            "name": "mac",
+            "title": "Mac OS"
         },
         {
             "name": "linux",
             "title": "Linux"
         }
     ],
-    "userGuide": "http://dublast.rxlab.guide",
-    "description": "Quick Playblast tool for Blender"
+    "assets": [
+        {
+            "url": "https://codeberg.org/Duduf-Blender/DuBlast/releases/download/v%version%/DuBlast_%version%.zip",
+            "title": "DuBlast for Blender",
+            "name": "dublast-blender",
+            "description": "Read the [comprehensive documentation](http://dublast.rxlab.guide) for more details.",
+            "hosts": [{ "name": "blender", "title": "Blender" }],
+            "os": [ {"name": "all", "title": "All"} ],
+            "links": [ {"title": "Documentation", "url": "http://dublast.rxlab.guide"}  ],
+            "prerelease": false
+        }
+    ],
+    "links":[
+        {"title": "User Guide", "url": "http://dublast.rxlab.guide"}
+    ],
+    "authors": [
+        {
+            "name": "Duduf",
+            "url": "https://duduf.com"
+        }
+    ]
 }
+
